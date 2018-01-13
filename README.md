@@ -20,10 +20,9 @@ series of elements.
 
 ![5x5 including command-line](docs/images/spiral_matrix_5+command_line.png "5x5  including command-line")
 
-This SpiralMatrix code module generates such grids of cells according to user
-specification. The constructed matrix is resident in memory while the printing
-of that matrix to the console is an optional feature. The few customizable
-features of SpiralMatrix are detailed below.
+This remainder of this document details the functionality of executing the
+SpiralMatrix from the command-line. For documentation on usage of SpiralMatrix
+when importing the code as a python module, please [click here](./docs/SpiralMatrix.md "The Spiral Matrix module API").
 
 #### Required parameter
 
