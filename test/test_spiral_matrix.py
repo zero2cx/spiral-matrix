@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
-# spiral_matrix_tests.py
+# test_spiral_matrix.py
 
 import unittest
 from spiral_matrix.spiral_matrix import SpiralMatrix, ArgumentError
@@ -61,11 +61,11 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
 
         pass_configs = [
             { 'start': 1, 'step': 1,
-              'want_value': 17 },
+              'want_0_0_value': 17 },
             { 'start': 1000, 'step': 2,
-              'want_value': 1032 },
+              'want_0_0_value': 1032 },
             { 'start': -100, 'step': 3,
-              'want_value': -52 },
+              'want_0_0_value': -52 },
         ]
         for config in pass_configs:
             with self.subTest(config=config):
@@ -74,7 +74,7 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
                 self.assertIsInstance(m.series, range)
                 self.assertEqual(len(m.series), m.max)
                 m._build()
-                self.assertEqual(m.matrix[0][0], want_value)
+                self.assertEqual(m.matrix[0][0], want_0_0_value)
 
     def test_series_from_string(self):
 
@@ -82,11 +82,11 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
 
         pass_configs = [
             { 'words': 'vulture duck crocodile elephant tiger',
-              'want_value': 'duck' },
+              'want_0_0_value': 'duck' },
             { 'words': '10 4 2 45 31 8.88 22 -7 0 94',
-              'want_value': '22' },
+              'want_0_0_value': '22' },
             { 'words': '~ @#$ ) ( !*% +!',
-              'want_value': '!*%' },
+              'want_0_0_value': '!*%' },
         ]
         for config in pass_configs:
             with self.subTest(config=config):
@@ -95,7 +95,7 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
                 self.assertIsInstance(m.series, list)
                 self.assertEqual(len(m.series), m.max)
                 m._build()
-                self.assertEqual(m.matrix[0][0], want_value)
+                self.assertEqual(m.matrix[0][0], want_0_0_value)
 
     def test_series_from_file(self):
 
@@ -107,11 +107,11 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
 
         pass_configs = [
             { 'filename': 'test/test-input/5-letter-words.txt',
-              'want_value': 'alike' },
+              'want_0_0_value': 'alike' },
             { 'filename': 'test/test-input/3-letter-words.txt',
-              'want_value': 'alt' },
+              'want_0_0_value': 'alt' },
             { 'filename': 'test/test-input/lorem-ipsum.txt',
-              'want_value': 'at.' },
+              'want_0_0_value': 'at.' },
         ]
         for config in pass_configs:
             with self.subTest(config=config):
@@ -122,7 +122,7 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
                     self.assertIsInstance(m.series, list)
                     self.assertEqual(len(m.series), m.max)
                     m._build()
-                    self.assertEqual(m.matrix[0][0], want_value)
+                    self.assertEqual(m.matrix[0][0], want_0_0_value)
 
         # fail_configs = [
         #     { 'filename': 'tests/input/binary.dat' },
