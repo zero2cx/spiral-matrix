@@ -10,17 +10,16 @@ arrays construct thus forms a two-dimensional grid made up of individual cells.
 ![5x5 spiral matrix](docs/images/spiral_matrix_5.png "5x5 spiral matrix")
 
 A spiral matrix is a particular type of squared-shaped matrix where each cell is
-populated with one element taken from a specified series of elements. The spiral
-in the name originates from the condition that all cells are filled utilizing a
-pattern that conforms to a tightly-wound spiral. The cell-to-cell spiral
-progression begins in the center cell. From there, the progression spirals ever-
-outward, moving from cell to cell filling each with an element of the series.
-Ultimately, each cell in the matrix is populated with one element from that
-series of elements.
+populated with a progression of elements in a series. The spiral in the name
+refers to the condition that the cells are filled using a pattern that conforms
+to a tightly-wound spiral. The cell-to-cell spiral progression begins in the
+center cell. From there, the progression spirals ever-outward, moving from cell
+to cell filling each one with an element of the series. Ultimately, each cell in
+the matrix is populated with one element of the series.
 
 ![5x5 including command-line](docs/images/spiral_matrix_5+command_line.png "5x5  including command-line")
 
-This remainder of this document details the functionality of executing the
+This remainder of this document details the functionality of executing
 SpiralMatrix from the command-line. For documentation on usage of SpiralMatrix
 when importing the code as a python module, please [click here](./docs/SpiralMatrix.md "The Spiral Matrix module API").
 
