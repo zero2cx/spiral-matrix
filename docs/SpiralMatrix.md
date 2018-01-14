@@ -37,9 +37,9 @@ through its rows and columns. Pretty-printing it can be done using the
     - [step](#step) - the integer value of the incrementing progression of
     [series](#series)
   - [Additional attributes - Alternative style](#attributes---alternative-style)
-    - [file](#file) - name of the text file containing whitespace-delimited word
-    tokens
-    - [words](#words) - string of whitespace-delimited tokens, i.e. words
+    - [file](#file) - name of the text file containing whitespace-delimited
+    tokens. i.e. words, etc.
+    - [words](#words) - string of whitespace-delimited tokens, i.e. words. etc.
   - [Class attributes](#class-attributes)
     - [E](#e) - relative-to-current coordinate adjustment towards compass-east
     - [N](#n) - relative-to-current coordinate adjustment towards compass-north
@@ -133,14 +133,16 @@ through its rows and columns. Pretty-printing it can be done using the
   - _description_ - the series of values used to populate the cells
   - _type_ - list, of length [max](#max)
   - _notes:_
-    - [_default_](#additional-attributes---default-style) - list of incrementing
-    integer values
-    - [_alternative_](#additional-attributes---alternative-style) - list of
-    supplied word tokens
+    - [_default style_](#additional-attributes---default-style) - list of
+    incrementing integer values
+    - [_alternative style_](#additional-attributes---alternative-style) - list
+    of caller-supplied word tokens
     - the default style is over-ridden by the usage of either of these
     attributes:
-      - [file](#file)
-      - [words](#words)
+      - [file](#file) - name of the text file containing whitespace-delimited
+      tokens, i.e. words, etc.
+      - [words](#words) - string of whitespace-delimited tokens, i.e. words,
+      etc.
 
 ---
 
@@ -187,8 +189,8 @@ through its rows and columns. Pretty-printing it can be done using the
 ### Additional attributes - alternative style:
 
 #### [file](#interface-contents "Interface Contents")
-  - _description_ - name of the text file containing whitespace-delimited word
-  tokens
+  - _description_ - name of the text file containing whitespace-delimited
+  tokens, i.e. words, etc.
   - _type_ - local system filename
   - _note_ - human-readable text files only
   - _default_ - not used
@@ -196,7 +198,7 @@ through its rows and columns. Pretty-printing it can be done using the
 ---
 
 #### [words](#interface-contents "Interface Contents")
-  - _description_ - string of whitespace-delimited tokens, i.e. words
+  - _description_ - string of whitespace-delimited tokens, i.e. words, etc.
   - _type_ - string value
   - _note_ - when the string value is omitted, then text from stdin is accepted
   - _default_ - not used
