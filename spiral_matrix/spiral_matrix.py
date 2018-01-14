@@ -108,6 +108,8 @@ class SpiralMatrix():
     def _series(self):
         '''
         Populate series with integer values to fill the matrix cells.
+
+        Return the series list.
         '''
         start = self.start
         step = self.step
@@ -122,6 +124,8 @@ class SpiralMatrix():
     def _series_from_file(self):
         '''
         Populate series using content of a local file to fill the matrix cells.
+
+        Return the series list.
         '''
         file = self.file
         max = self.max
@@ -137,6 +141,8 @@ class SpiralMatrix():
     def _series_from_string(self):
         '''
         Populate series using a space-delimited string to fill the matrix cells.
+
+        Return the series list.
         '''
         words = self.words
         max = self.max
@@ -147,6 +153,8 @@ class SpiralMatrix():
     def _width(self):
         '''
         Set cell-width for printing, equal to the widest element in the series.
+
+        Return the width integer.
         '''
         series = self.series
         width = 0
@@ -159,7 +167,7 @@ class SpiralMatrix():
         '''
         Populate the current cell with the currently indexed element of series.
 
-        Increment the series index and return that index value.
+        Increment the series index integer and return that index.
         '''
         y, x = coords
         try:
@@ -172,7 +180,7 @@ class SpiralMatrix():
         '''
         Determine cell coords of relative-left/right cell from the current cell.
 
-        Return the cell coordinates.
+        Return the cell coordinates tuple.
         '''
         vector = self.vector[look][bearing]
         y, x = [sum(coords) for coords in zip(location, vector)]
@@ -184,19 +192,23 @@ class SpiralMatrix():
 
     def _turn(self, turn, bearing):
         '''
-        Return the relative bearing that points directly to the left or right.
+        Turn towards the left- or right-adjacent cell, relative to current.
+
+        Return the compass bearing of the new direction.
         '''
         return self.vector[turn][bearing]
 
     def _move(self, cell, bearing):
         '''
-        Move forward one cell, returning coordinates for the new current cell.
+        Move forward one cell.
+
+        Return coordinates tuple for the new current cell.
         '''
         return tuple([sum(coords) for coords in zip(cell, bearing)])
 
     def _build(self):
         '''
-        Populate the spiral matrix with a progressing series of elements.
+        Generate the spiral matrix, populating it with elements of series.
         '''
         dimension = self.dimension
         cell = self.origin
@@ -209,7 +221,7 @@ class SpiralMatrix():
         for i in range(dimension):
             self.matrix.append([None] * dimension)
         '''Start in the origin cell and spiral outward, populating each cell
-        with the next element of the series as the spiral progresses.'''
+        with the next element of series as the spiral progresses.'''
         index = self._fill(cell, index)                         # fill
         cell = self._move(cell, bearing)                        # move
         while index < max:
