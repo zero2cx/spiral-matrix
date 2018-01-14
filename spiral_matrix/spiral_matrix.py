@@ -55,14 +55,13 @@ class SpiralMatrix():
         'right': { E: S, S: W, W: N, N: E }
     }
 
-    def __init__(self, dimension=None, axes=False, right=False, bearing='E',
-            start=1, step=1, file=None, words=None):
+    def __init__(self, dimension=None, right=False, bearing='E', start=1,
+            step=1, file=None, words=None):
         '''
         Create a new instance of a 2-d spiral matrix.
 
         Description of instance attributes:
             dimension : int : row- and column-count of the matrix
-            axes      : True/False : do printing of axes labels, or not
             turn      : left/right : direction of the spiral progression
             bearing   : E/N/W/S : initial compass bearing
             start     : int : numeric value inside the origin cell
@@ -76,7 +75,6 @@ class SpiralMatrix():
         '''
         try:
             self.dimension = int(dimension) if int(dimension) else 'invalid'
-            self.axes = axes
             self.turn = 'right' if right else 'left'
             self.bearing = self.compass[bearing]
             self.start = start
@@ -215,8 +213,6 @@ class SpiralMatrix():
         '''
         Print the 2-d matrix with the column and row axes labelled, or without.
         '''
-        if not axes:
-            axes = self.axes
         '''Print column-labels along the top, or not.'''
         if axes:
             print('    ', end='')
@@ -406,14 +402,14 @@ def main():
         args.words = sys.stdin.read()
     '''Build and print the spiral matrix using the parsed arguments.'''
     try:
-        m = SpiralMatrix(dimension=args.DIMENSION, axes=args.axes,
-                right=args.right, bearing=args.bearing, start=args.center,
-                step=args.step, file=args.file, words=args.words)
+        m = SpiralMatrix(dimension=args.DIMENSION, right=args.right,
+                bearing=args.bearing, start=args.center, step=args.step,
+                file=args.file, words=args.words)
     except AttributeError:
         sys.exit('** AttributeError: %s\n   Attributes List: %s' % (
                 'could not instantiate SpiralMatrix',
                 str(vars(args)).strip('{}')))
-    m.show()
+    m.show(args.axes)
 
 if __name__ == '__main__':
     import sys
