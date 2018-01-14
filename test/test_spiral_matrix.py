@@ -27,15 +27,15 @@ class SpiralMatrixInstantiationTestCase(unittest.TestCase):
     def test_build(self):
 
         pass_configs = [
-            { 'dimension': 5, 'axes': False, 'right': False, 'bearing': 'E',
-              'start': 1, 'step': 1, 'file': None, 'words': None,
+            { 'dimension': 5, 'right': False, 'bearing': 'E', 'start': 1,
+              'step': 1, 'file': None, 'words': None,
               'want_matrix': [[17, 16, 15, 14, 13],
                               [18,  5,  4,  3, 12],
                               [19,  6,  1,  2, 11],
                               [20,  7,  8,  9, 10],
                               [21, 22, 23, 24, 25]] },
-            { 'dimension': 3, 'axes': True, 'right': True, 'bearing': 'N',
-              'start': 1, 'step': 1, 'file': None,
+            { 'dimension': 3, 'right': True, 'bearing': 'N', 'start': 1,
+              'step': 1, 'file': None,
               'words': 'eenie meenie minie moe',
               'want_matrix': [['eenie', 'meenie', 'minie'],
                               [  'moe',  'eenie',   'moe'],
@@ -43,10 +43,10 @@ class SpiralMatrixInstantiationTestCase(unittest.TestCase):
         ]
         for config in pass_configs:
             with self.subTest(config=config):
-                dimension, axes, right, bearing, start, step, file, words, \
+                dimension, turn, bearing, start, step, file, words, \
                         want_matrix = config.values()
-                m = SpiralMatrix(dimension, axes, right, bearing, start, step,
-                        file, words)
+                m = SpiralMatrix(dimension, turn, bearing, start, step, file, \
+                        words)
                 self.assertEqual(m.matrix, want_matrix)
 
 class SpiralMatrixMethodsTestCase(unittest.TestCase):
@@ -69,7 +69,7 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
         ]
         for config in pass_configs:
             with self.subTest(config=config):
-                m.start, m.step, want_value = config.values()
+                m.start, m.step, want_0_0_value = config.values()
                 m.series = m._series()
                 self.assertIsInstance(m.series, range)
                 self.assertEqual(len(m.series), m.max)
@@ -90,7 +90,7 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
         ]
         for config in pass_configs:
             with self.subTest(config=config):
-                m.words, want_value = config.values()
+                m.words, want_0_0_value = config.values()
                 m.series = m._series_from_string()
                 self.assertIsInstance(m.series, list)
                 self.assertEqual(len(m.series), m.max)
@@ -115,7 +115,7 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
         ]
         for config in pass_configs:
             with self.subTest(config=config):
-                filename, want_value = config.values()
+                filename, want_0_0_value = config.values()
                 with open(filename) as file:
                     m.file = file
                     m.series = m._series_from_file()
