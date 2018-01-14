@@ -85,8 +85,8 @@ manually or via the object's [`.show()`](#show) method.
   - _description_ - the series of values used to populate the cells of the matrix
   - _type_ - list, of length [max](#max)
   - _notes:_
-    - [_default_](#Additional attributes - default style) - list of incrementing integer values
-    - [_alternative_](#Additional attributes - alternative style) - list of supplied word tokens
+    - [_default_](#additional-attributes---default-style) - list of incrementing integer values
+    - [_alternative_](#additional-attributes---alternative-style) - list of supplied word tokens
     - the default style is over-ridden by the usage of either of these attributes:
       - [file](#file)
       - [words](#words)
