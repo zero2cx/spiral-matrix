@@ -1,8 +1,8 @@
 
 # SpirtalMatrix Progamming Interface
 
-The SpiralMatrix class instantiates an object which generates a spiral matrix of
-cells according to the specified parameters from the caller. The module is
+Instantiating the SpiralMatrix class generates a spiral matrix grid structure
+that conforms to the specified parameters passed from the caller. The module is
 written in Python 3.x and is imported into your project with `import
 spiral_matrix` or `from spiral_matrix import SpiralMatrix`.
 
