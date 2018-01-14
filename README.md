@@ -3,19 +3,20 @@
 ## Construct a square 2-d matrix with an outward-spiraling series of elements
 
 
-A matrix in the context of this code module is an array whose membership is made
-up of a number of other arrays that are all uniform in size. This array-of-
-arrays construct thus forms a two-dimensional grid made up of individual cells.
+A matrix in the context of this code module is an array whose membership is
+made up of a number of other arrays that are all uniform in size. The
+assembled array-of-arrays that is generated forms a two-dimensional grid
+made up of individual cells.
 
 ![5x5 spiral matrix](docs/images/spiral_matrix_5.png "5x5 spiral matrix")
 
-A spiral matrix is a particular type of squared-shaped matrix where each cell is
-populated with a progression of elements of a series. The spiral in the name
-refers to the condition that the cells are filled using a pattern that conforms
-to a tightly-wound spiral. The spiral progression begins in the center cell.
-From there, the progression spirals outward moving from cell to cell, filling
-each one with an element of the series. Ultimately, each cell in the matrix is
-populated with one element of the series.
+A spiral matrix is a particular type of squared-shaped matrix where each
+cell is populated with a progression of elements of a series. The spiral in
+the name refers to the condition that the cells are filled using a pattern
+that conforms to a tightly-wound spiral. The spiral progression begins in
+the center cell. From there, the progression spirals outward moving from
+cell to cell, filling each one with an element of the series. Ultimately,
+each cell in the matrix is populated with one element of the series.
 
 ![5x5 including command-line](docs/images/spiral_matrix_5+command_line.png "5x5  including command-line")
 
@@ -33,11 +34,11 @@ when importing the code as a Python 3.x module, please [click here](./docs/Spira
 
 #### General-purpose options
 
-When printing to the console, column and row axis-labels along the top- and
-left-side can be prefixed to the output. The spiral can progress in either
-a clockwise or counter-clockwise manner. Proceeding outward from the
-center cell in one compass direction or bearing, i.e East, North, West, or
-South, initiates the progression of the spiral.
+Column and row axis-labels along the top- and left-side can be prefixed to
+the printed output. The spiral can progress in either a clockwise or
+counter-clockwise manner. Proceeding outward from the center cell in one
+compass direction or bearing, i.e East, North, West, or South, initiates the
+progression of the spiral.
 
 ![7x7 with axes, bearing: south, center: 1000, step: -300](docs/images/spiral_matrix_7+axes+bearing_south+center1000+step-300.png "7x7 with axes, bearing: south, center: 1000, step: -300")
 
@@ -64,14 +65,14 @@ South, initiates the progression of the spiral.
         outward from the center of the matrix.
         (default: E)
 
-#### Options for integer-populated matrix cells
+#### Options for the default style of integer-populated matrix cells
 
-The default style for the generated matrix consists of the series of integers
-that begin with 1 and then increment by 1 for each member of the series. Either
-of these integer values may be modified in order to change the generated
-matrix's cell contents. Any positive or negative integer, or zero, is acceptable
-to occupy the center cell that begins the spiral. The increment integer must be
-a positive or negative, non-zero integer.
+The default style for the generated matrix consists of the series of
+integers that begin with 1 and then increment by 1 for each member of the
+series. Either of these integer values may be modified in order to change
+the generated matrix's cell contents. Any positive or negative integer, or
+zero, is acceptable to occupy the center cell that begins the spiral. The
+increment integer must be a positive or negative, non-zero integer.
 
 Use of the following options will modify the implementation of the default
 behavior.
@@ -85,13 +86,14 @@ behavior.
         cell's value as the spiral progresses from cell to
         cell. (default: 1)
 
-#### Options for text element-populated matrix cells
+#### Options for the alternative style of element-populated matrix cells
 
-As an alternative to the population of the cells of the matrix with the series
-of incrementing integers, a string of whitespace-delimited text elements can be
-supplied. This string of elements might consist of any combination of words,
-numbers, punctuation, or whitespace. The text elements will be read from a file
-or stdin, or provided in a string via the command-line.
+As an alternative to the population of the cells of the matrix with the
+series of incrementing integers, a string of whitespace-delimited text
+elements can be supplied. This string of elements might consist of any
+combination of words, numbers, punctuation, or whitespace. The text
+elements will be read from a file or stdin, or provided in a string via
+the command-line.
 
 ![5x5 with axes, bearing: south, series: lorem_ipsum](docs/images/spiral_matrix_5+axes+bearing_south+right+file_lorem_ipsum.png "5x5 with axes, bearing: south, series: lorem_ipsum")
 
