@@ -7,7 +7,7 @@ is written in Python 3.x and is imported into your project with
 ``import spiral_matrix`` or ``from spiral_matrix import SpiralMatrix``.
 
 For details of the command-line interface for this module, please `click
-here <../README.md>`__.
+here <../README.rst>`__.
 
 Once instantiated, the object’s `.matrix <#matrix>`__ attribute contains
 the generated structure of the spiral matrix. This matrix is a Python list
