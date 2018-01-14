@@ -21,7 +21,7 @@
 
 class SpiralMatrix():
     '''
-    Construct a square 2-d matrix with an outward-spiraling series of elements.
+    Generate a square 2-d matrix with an outward-spiraling series of elements.
 
     A spiral matrix is a particular type of squared-shaped matrix where each
     cell is populated with a progression of elements of a series. The spiral in

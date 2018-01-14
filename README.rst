@@ -1,8 +1,8 @@
 SpiralMatrix
 ============
 
-Construct a square 2-d matrix with an outward-spiraling series of elements
---------------------------------------------------------------------------
+Generate a square 2-d matrix with an outward-spiraling series of elements
+-------------------------------------------------------------------------
 
 A matrix in the context of this code module is an array whose membership
 is made up of a number of other arrays that are all uniform in size. The
