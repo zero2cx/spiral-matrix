@@ -98,7 +98,7 @@ through its rows and columns. Pretty-printing it can be done using the
 ---
 
 #### [bearing](#interface-contents "Interface Contents")
-  - _description_ - the [compass](#compass-bearings) bearing that initiates the
+  - _description_ - the [compass bearing](#compass-bearings) that initiates the
   spiral progression outward from the center
   - _type_ - string value (case indifferrent)
   - _note_ - constrained to:
