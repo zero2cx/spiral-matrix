@@ -2,20 +2,19 @@ SpirtalMatrix Progamming Interface
 ==================================
 
 Instantiating the SpiralMatrix class generates a spiral matrix grid
-structure that conforms to the specified parameters passed from the
-caller. The module is written in Python 3.x and is imported into your
-project with ``import spiral_matrix`` or
-``from spiral_matrix import SpiralMatrix``.
+structure that conforms to the parameters passed from the caller. The module
+is written in Python 3.x and is imported into your project with
+``import spiral_matrix`` or ``from spiral_matrix import SpiralMatrix``.
 
 For details of the command-line interface for this module, please `click
 here <../README.md>`__.
 
-Once instantiated, the object’s `.matrix <#matrix>`__ attribute
-contains the actual matrix structure. The printing to the console or
-other manipulation of the `.matrix <#matrix>`__ structure can be
-accomplished manually by looping through its rows and columns.
-Pretty-printing it can be done using the `.show() <#show-axes->`__
-method.
+Once instantiated, the object’s `.matrix <#matrix>`__ attribute contains
+the generated structure of the spiral matrix. This matrix is a Python list
+containing elements that are also lists. Printing to the console or other
+manipulation of it can be accomplished by manually looping through the row
+and column list elements. Pretty-printing it can be done using the object's
+`.show() <#show-axes->`__ method.
 
 --------------
 
@@ -231,7 +230,7 @@ Additional attributes - default style:
 `start <#interface-contents>`__
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  *description* - the integer value that fills the center cell,
+-  *description* - the integer value that populates the center cell,
    i.e. the start value of `series <#series>`__
 -  *type* - integer value
 -  *note* - any positive, negative, or zero integer value is acceptable
