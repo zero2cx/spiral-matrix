@@ -73,7 +73,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 ### Attributes:
 
 
-#### dimension
+#### [dimension](#interface-contents)
   - _description_ - the count of rows or columns
   - _type_ - integer value
   - _note_ - constrained to odd integers only
@@ -81,7 +81,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### turn
+#### [turn](#interface-contents)
   - _description_ - the direction of the spiral, i.e. winding to the left, or to
   the right
   - _type_ - string value
@@ -90,7 +90,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### bearing
+#### [bearing](#interface-contents)
   - _description_ - the [compass](#compass) bearing that initiates the spiral
   progression
   - _type_ - string value (case indifferrent)
@@ -103,7 +103,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### max
+#### [max](#interface-contents)
   - _description_ - the count of cells
   - _type_ - integer value
   - _note_ - computed by formula:
@@ -111,7 +111,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### origin
+#### [origin](#interface-contents)
   - _description_ - the coordinates of the center cell
   - _type_ - 2-tuple, (integer value, integer value)
   - _notes:_
@@ -122,7 +122,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### series
+#### [series](#interface-contents)
   - _description_ - the series of values used to populate the cells
   - _type_ - list, of length [max](#max)
   - _notes:_
@@ -137,7 +137,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### width
+#### [width](#interface-contents)
   - _description_ - the width (in characters) of the widest element of
   [series](#series)
   - _type_ - integer value
@@ -146,7 +146,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### matrix
+#### [matrix](#interface-contents)
   - _description_ - the [dimension](#dimension)-sized square-shaped 2-d matrix
   - _type_ - list of lists
   - _notes:_
@@ -159,7 +159,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 ### Additional attributes - default style:
 
 
-#### start
+#### [start](#interface-contents)
   - _description_ - the integer value that fills the center cell, i.e. the start
   value of [series](#series)
   - _type_ - integer value
@@ -168,7 +168,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### step
+#### [step](#interface-contents)
   - _description_ - the integer value of the incrementing progression of
   [series](#series)
   - _type_ - integer value
@@ -179,7 +179,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ### Additional attributes - alternative style:
 
-#### file
+#### [file](#interface-contents)
   - _description_ - name of the text file containing whitespace-delimited word
   tokens
   - _type_ - local system filename
@@ -188,7 +188,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### words
+#### [words](#interface-contents)
   - _description_ - string of whitespace-delimited tokens, i.e. words
   - _type_ - string value
   - _note_ - when the string value is omitted, then text from stdin is accepted
@@ -203,35 +203,35 @@ manually or via the object's [`.show()`](#showaxes) method.
   calculated by summing one of the tuple values detailed below with that cell's
   (y, x) coordinates
 
-#### E
+#### [E](#interface-contents)
   - _description_ - an equivalent of compass-east
   - _value_ - 2-tuple, (0, 1)
   - _note_ - 0 along the vertical axis, and +1 along the horizontal axis
 
 ---
 
-#### N
+#### [N](#interface-contents)
   - _description_ - an equivalent of compass-north
   - _value_ - 2-tuple, (-1, 0)
   - _note_ - -1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
-#### W
+#### [W](#interface-contents)
   - _description_ - an equivalent of compass-west
   - _value_ - 2-tuple, (0, -1)
   - _note_ - 0 along the vertical axis, and -1 along the horizontal axis
 
 ---
 
-#### S
+#### [S](#interface-contents)
   - _description_ - an equivalent of compass-south
   - _value_ - 2-tuple, (1, 0)
   - _note_ - +1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
-#### compass
+#### [compass](#interface-contents)
   - _description_ - map of each string representation to the dictionary key,
   used to look up the corresponding tuple value
   - _value_ - dictionary:
@@ -246,7 +246,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ---
 
-#### vector
+#### [vector](#interface-contents)
   - _description_ - a nested dictionary structure that maps each compass-based
   vector to its relative-left and -right compass-bearing dictionary key
   - _value_ - dictionary:
@@ -267,8 +267,14 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 ### Public method:
 
-#### .show([[axes](#axes)])
+#### [.show](#interface-contents)([axes])
   - _description_ - print the matrix structure to the console
+  - _parameter:_
+    - **axes**
+      - _description_ - enable or disable the printing of axes-labels
+      - _type_ - boolean value
+      - _default_ - False
+
 
 ### Usage example:
     >>> myMatrix.show(True)
@@ -293,13 +299,6 @@ manually or via the object's [`.show()`](#showaxes) method.
     71 42 21 22 23 24 25 26 51
     72 43 44 45 46 47 48 49 50
     73 74 75 76 77 78 79 80 81 --->
-
-### Method parameter:
-
-#### axes
-  - _description_ - enable or disable the printing of axes-labels
-  - _type_ - boolean value
-  - _default_ - False
 
 ---
 
