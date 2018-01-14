@@ -41,10 +41,10 @@ through its rows and columns. Pretty-printing it can be done using the
     tokens
     - [words](#words) - string of whitespace-delimited tokens, i.e. words
   - [Class attributes](#class-attributes)
-    - [E](#e) - relative-to-current axis-adjustment towards compass-east
-    - [N](#n) - relative-to-current axis-adjustment towards compass-north
-    - [W](#w) - relative-to-current axis-adjustment towards compass-west
-    - [S](#s) - relative-to-current axis-adjustment towards compass-south
+    - [E](#e) - relative-to-current coordinate adjustment towards compass-east
+    - [N](#n) - relative-to-current coordinate adjustment towards compass-north
+    - [W](#w) - relative-to-current coordinate adjustment towards compass-west
+    - [S](#s) - relative-to-current coordinate adjustment towards compass-south
     - [compass](#compass) - map of each string representation to the dictionary
     key used to look up its corresponding tuple value
     - [vector](#vector) - a nested dictionary structure that maps each
@@ -211,28 +211,32 @@ through its rows and columns. Pretty-printing it can be done using the
   (y, x) coordinates
 
 #### [E](#interface-contents "Interface Contents")
-  - _description_ - relative-to-current axis-adjustment towards compass-east
+  - _description_ - relative-to-current coordinate adjustment towards
+  compass-east
   - _value_ - 2-tuple, (0, 1)
   - _note_ - 0 along the vertical axis, and +1 along the horizontal axis
 
 ---
 
 #### [N](#interface-contents "Interface Contents")
-  - _description_ - relative-to-current axis-adjustment towards compass-north
+  - _description_ - relative-to-current coordinate adjustment towards
+  compass-north
   - _value_ - 2-tuple, (-1, 0)
   - _note_ - -1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
 #### [W](#interface-contents "Interface Contents")
-  - _description_ - relative-to-current axis-adjustment towards compass-west
+  - _description_ - relative-to-current coordinate adjustment towards
+  compass-west
   - _value_ - 2-tuple, (0, -1)
   - _note_ - 0 along the vertical axis, and -1 along the horizontal axis
 
 ---
 
 #### [S](#interface-contents "Interface Contents")
-  - _description_ - relative-to-current axis-adjustment towards compass-south
+  - _description_ - relative-to-current coordinate adjustment towards
+  compass-south
   - _value_ - 2-tuple, (1, 0)
   - _note_ - +1 along the vertical axis, and 0 along the horizontal axis
 
@@ -313,5 +317,5 @@ through its rows and columns. Pretty-printing it can be done using the
 ###### Repo: [https://github.com/zero2cx/spiral-matrix](https://github.com/zero2cx/spiral-matrix)
 ###### License: GPL3+
 ###### Document version: 1.0
-###### Modified: 01/13/2018
+###### Modified: 01/14/2018
 ###### Author: David Schenck
