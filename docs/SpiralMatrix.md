@@ -9,7 +9,36 @@ For details of the command-line interface for this module, please [click here](.
 
 Once instantiated, the object remains resident in memory. The printing to the
 console of the object's [`.matrix`](#matrix) attribute can be accomplished
-manually or via the object's [`.show()`](#show) method.
+manually or via the object's [`.show()`](#showaxes) method.
+
+---
+
+## Interface Contents
+- [SpiralMatrix class](#spiralmatrix-class)
+  - [Attributes](#attributes)
+    - [dimension](#dimension)
+    - [turn](#turn)
+    - [bearing](#bearing)
+    - [max](#max)
+    - [origin](#origin)
+    - [series](#series)
+    - [width](#width)
+    - [matrix](#matrix)
+  - [Attributes - Default style](#attributes---default-style)
+    - [start](#start)
+    - [step](#step)
+  - [Attributes - Alternative style](#attributes---alternative-style)
+    - [file](#file)
+    - [words](#words)
+  - [Class attributes](#class-attributes)
+    - [E](#e)
+    - [N](#n)
+    - [W](#w)
+    - [S](#s)
+    - [compass](#compass)
+    - [vector](#vector)
+  - [Public method](#public-method)
+    - [.show()](#showaxes)
 
 ---
 
@@ -43,7 +72,8 @@ manually or via the object's [`.show()`](#show) method.
 ---
 
 #### turn
-  - _description_ - the direction of the spiral, i.e. winding to the left, or to the right
+  - _description_ - the direction of the spiral, i.e. winding to the left, or to
+  the right
   - _type_ - string value
   - _note_ - constrained to 'left' or 'right' only
   - _default_ - 'left'
@@ -82,19 +112,24 @@ manually or via the object's [`.show()`](#show) method.
 ---
 
 #### series
-  - _description_ - the series of values used to populate the cells of the matrix
+  - _description_ - the series of values used to populate the cells of the
+  matrix
   - _type_ - list, of length [max](#max)
   - _notes:_
-    - [_default_](#additional-attributes---default-style) - list of incrementing integer values
-    - [_alternative_](#additional-attributes---alternative-style) - list of supplied word tokens
-    - the default style is over-ridden by the usage of either of these attributes:
+    - [_default_](#additional-attributes---default-style) - list of incrementing
+    integer values
+    - [_alternative_](#additional-attributes---alternative-style) - list of
+    supplied word tokens
+    - the default style is over-ridden by the usage of either of these
+    attributes:
       - [file](#file)
       - [words](#words)
 
 ---
 
 #### width
-  - _description_ - the width (in characters) of the widest element of [series](#series)
+  - _description_ - the width (in characters) of the widest element of
+  [series](#series)
   - _type_ - integer value
   - _note_ - computed by formula:
     - len([series](#series))
@@ -115,7 +150,8 @@ manually or via the object's [`.show()`](#show) method.
 
 
 #### start
-  - _description_ - the integer value that fills the center cell, i.e. the start value of [series](#series)
+  - _description_ - the integer value that fills the center cell, i.e. the start
+  value of [series](#series)
   - _type_ - integer value
   - _note_ - any positive, negative, or zero integer value is acceptable
   - _default_ - 1
@@ -123,7 +159,8 @@ manually or via the object's [`.show()`](#show) method.
 ---
 
 #### step
-  - _description_ - the integer value of the incrementing progression
+  - _description_ - the integer value of the incrementing progression of
+  [series](#series)
   - _type_ - integer value
   - _note_ - only a positive or negative, non-zero integer value is acceptable
   - _default_ - 1
@@ -133,7 +170,8 @@ manually or via the object's [`.show()`](#show) method.
 ### Additional attributes - alternative style:
 
 #### file
-  - _description_ - name of the text file containing whitespace-delimited word tokens
+  - _description_ - name of the text file containing whitespace-delimited word
+  tokens
   - _type_ - local system filename
   - _note_ - human-readable text files only
   - _default_ - not used
@@ -151,7 +189,9 @@ manually or via the object's [`.show()`](#show) method.
 ### Class attributes:
 
 #### Compass bearings:
-  - _note_ - relative position (i.e. direction) from a specified cell is calculated by summing one of the tuple values detailed below with that cell's (y, x) coordinates
+  - _note_ - relative position (i.e. direction) from a specified cell is
+  calculated by summing one of the tuple values detailed below with that cell's
+  (y, x) coordinates
 
 #### E
   - _description_ - An equivalent of compass-east
@@ -177,12 +217,13 @@ manually or via the object's [`.show()`](#show) method.
 #### S
   - _description_ - An equivalent of compass-south
   - _value_ - 2-tuple, (1, 0)
-  - _note_ - 1 along the vertical axis, and 0 along the horizontal axis
+  - _note_ - +1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
 #### compass
-  - _description_ - Map each string representation to a dictionary key used to look up the corresponding tuple value for that key
+  - _description_ - Map each string representation to a dictionary key used to
+  look up the corresponding tuple value for that key
   - _value_ - dictionary:
     - 'E': E
     - 'EAST': E
@@ -196,7 +237,8 @@ manually or via the object's [`.show()`](#show) method.
 ---
 
 #### vector
-  - _description_ - Map each compass-based vector to its relative-left and -right vector tuple using a nested dictionary structure
+  - _description_ - Use a nested dictionary structure to map each compass-based
+  vector to its relative-left and -right compass-bearing dictionary key
   - _value_ - dictionary:
     - 'left'
       - _value_ - dictionary:
