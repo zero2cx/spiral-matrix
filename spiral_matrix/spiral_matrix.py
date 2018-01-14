@@ -337,33 +337,34 @@ def _configure_parser():
             'shaped 2-d matrix. (REQUIRED)')
     parser.add_argument('-a', '--axes', action='store_true',
             default=False,
-            help='Useful when printing the matrix to the console. '
-            'This parameter-less option will include column- '
-            'and row-axes labels along the top- and left-side. '
-            '(default: not used)')
+            help='This parameter-less option enables or disables the '
+            'prefixing of column- and row-axes labels along the '
+            'top- and left-side of the printed output. '
+            '(default: False)')
     spiral_group = parser.add_mutually_exclusive_group()
     spiral_group.add_argument('-r', '--right', action='store_true',
             default=False,
-            help='This parameter-less option constructs a spiral '
+            help='This parameter-less option generates a spiral '
             'which progresses in a clockwise manner. Not for use '
             'with \'left\'. (default: not used)')
     spiral_group.add_argument('-l', '--left', action='store_true',
             default=True,
-            help='This parameter-less option constructs a spiral '
+            help='This parameter-less option generates a spiral '
             'which progresses in a counter-clockwise manner, '
             'which is the default spiral direction. Not for use '
             'with \'right\'. Included for completeness.')
     parser.add_argument('-b','--bearing', type=_is_bearing,
             default='E',
             help='This compass bearing (N, E, S, or W) specifies '
-            'the direction used to proceed initially outward '
-            'from the center of the matrix. (default: E)')
+            'the direction that is used to proceed initially '
+            'outward from the center of the matrix. '
+            '(default: E)')
     integers_group = parser.add_argument_group('Integer-filled matrix options',
             'Matrix cells are filled with incrementing integers, by default.')
     integers_group.add_argument('-c', '--center', type=int,
             default=1,
             help='This integer value is used to populate the center '
-            'cell. (default: 1)')
+            'cell that begins the spiral. (default: 1)')
     integers_group.add_argument('-s', '--step', type=_is_not0_int,
             default=1,
             help='This integer value is used to increment the next '
@@ -381,14 +382,14 @@ def _configure_parser():
             'this option. (default: not used)')
     words_group.add_argument('-w', '--words', type=str, nargs='?',
             default=False,
-            help='This string of whitespace-delimited text elements '
+            help='This string of whitespace-delimited text elements
             'is used to populate the cells of the matrix. When '
             'this option is present with no string parameter '
             'given, then string is read from stdin. When '
-            'utilizing stdin, this option needs to be the last '
-            'option provided on the command-line. Usage of the '
-            '\'file\' option is excluded when using this option. '
-            '(default: not used)')
+            'utilizing stdin for string input, this option needs '
+            'to be the last option provided on the command-line. '
+            'Usage of the \'file\' option is excluded when using '
+            'this option. (default: not used)')
     return parser
 
 def main():

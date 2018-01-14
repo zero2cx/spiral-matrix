@@ -70,7 +70,7 @@ The default style for the generated matrix consists of the series of integers
 that begin with 1 and then increment by 1 for each member of the series. Either
 of these integer values may be modified in order to change the generated
 matrix's cell contents. Any positive or negative integer, or zero, is acceptable
-to occupy the center-cell that begins the spiral. The increment integer must be
+to occupy the center cell that begins the spiral. The increment integer must be
 a positive or negative, non-zero integer.
 
 Use of the following options will modify the implementation of the default
@@ -78,7 +78,7 @@ behavior.
 
     --center INTEGER
         This integer value is used to populate the center
-        cell. (default: 1)
+        cell that begins the spiral. (default: 1)
 
     --step INTEGER
         This integer value is used to increment the next
