@@ -22,7 +22,7 @@ through its rows and columns. Pretty-printing it can be done using the
     - [dimension](#dimension) - the count of rows or columns
     - [turn](#turn) - the direction of the spiral, i.e. winding to the left, or
     to the right
-    - [bearing](#bearing) - the [compass](#compass-bearings) bearing that
+    - [bearing](#bearing) - the [compass bearing](#compass-bearings) that
     initiates the spiral progression outward from the center
     - [max](#max) - the count of cells
     - [origin](#origin) - the coordinates of the center cell
