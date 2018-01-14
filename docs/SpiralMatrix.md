@@ -1,20 +1,20 @@
-# The SpirtalMatrix API Interface
+# SpirtalMatrix Progamming Interface
 
-The SpiralMatrix class instantiates an object which generates a spiral-matrix of
+The SpiralMatrix class instantiates an object which generates a spiral matrix of
 cells according to the caller's specification parameters. The module is written
-in Python 3.x and is imported into your project with `import SpiralMatrix`.
+in Python 3.x and is imported into your project with `import spiral_matrix`.
 
 For details of the command-line interface for this module, please [click here](../README.md "The command-line interface").
 
-Once instantiated, the constructed matrix object remains resident in memory. The
-printing to the console of the object's [`.matrix`](#matrix) attribute can be accomplished
+Once instantiated, the object remains resident in memory. The printing to the
+console of the object's [`.matrix`](#matrix) attribute can be accomplished
 manually or via the object's [`.show()`](#show) method.
 
 ---
 
 ## SpiralMatrix class
 
-### SpiralMatrix([dimension](#dimension) [, [axes](#axes)] [, [right](#right)] [, [bearing](#bearing)] [, [start](#start)] [, [step](#step)] [, [file](#file)] [, [words](#words)])
+### SpiralMatrix([dimension](#dimension) [, [right](#right)] [, [bearing](#bearing)] [, [start](#start)] [, [step](#step)] [, [file](#file)] [, [words](#words)])
 
 ### Instantiation and usage example:
     >>> from spiral_matrix import SpiralMatrix
@@ -38,13 +38,6 @@ manually or via the object's [`.show()`](#show) method.
   - _type_ - integer value
   - _note_ - constrained to odd integers only
   - _default_ - none (required parameter)
-
----
-
-#### axes
-  - _description_ - enable or disable the printing of axes-labels
-  - _type_ - boolean value
-  - _default_ - False
 
 ---
 
@@ -138,6 +131,66 @@ manually or via the object's [`.show()`](#show) method.
 
 ---
 
+### Class attributes:
+
+#### The four compass-based vectors:
+
+#### E
+  - _description_ - An equivalent of compass-east
+  - _value_ - 2-tuple, (0, 1)
+
+---
+
+#### N
+  - _description_ - An equivalent of compass-north
+  - _value_ - 2-tuple, (-1, 0)
+
+---
+
+#### W
+  - _description_ - An equivalent of compass-west
+  - _value_ - 2-tuple, (0, -1)
+
+---
+
+#### S
+  - _description_ - An equivalent of compass-south
+  - _value_ - 2-tuple, (1, 0)
+
+---
+
+#### compass
+  - _description_ - Map each string representation to the corresponding tuple value
+  - _value_ - dictionary:
+    - 'E': E
+    - 'EAST': E
+    - 'N': N
+    - 'NORTH': N
+    - 'W': W
+    - 'WEST': W
+    - 'S': S
+    - 'SOUTH': S
+
+---
+
+#### vector
+  - _description_ - Map each compass-based vector to its relative-left and -right vector using a nested dictionary.
+  - _value_ - dictionary:
+    - 'left'
+      - _value_ - dictionary:
+        - E: N
+        - N: W
+        - W: S
+        - S: E
+    - 'right'
+      - _value_ - dictionary:
+        - E: S
+        - S: W
+        - W: N
+        - N: E
+
+---
+
 ### Public method:
 
 #### .show([[axes](#axes)])
@@ -169,7 +222,7 @@ manually or via the object's [`.show()`](#show) method.
 ### Method parameter:
 
 #### axes
-  - _description_ - printed output includes axis labels, or not
+  - _description_ - enable or disable the printing of axes-labels
   - _type_ - boolean value
   - _default_ - False
 
