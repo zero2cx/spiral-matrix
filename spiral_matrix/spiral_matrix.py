@@ -382,7 +382,7 @@ def _configure_parser():
             'this option. (default: not used)')
     words_group.add_argument('-w', '--words', type=str, nargs='?',
             default=False,
-            help='This string of whitespace-delimited text elements
+            help='This string of whitespace-delimited text elements '
             'is used to populate the cells of the matrix. When '
             'this option is present with no string parameter '
             'given, then string is read from stdin. When '
