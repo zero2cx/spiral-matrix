@@ -57,7 +57,7 @@ through its rows and columns. Pretty-printing it can be done using the
 
 ## SpiralMatrix class
 
-### SpiralMatrix([dimension](#dimension) [, [turn](#turn)] [, [bearing](#bearing)] [, [start](#start)] [, [step](#step)] [, [file](#file)] [, [words](#words)])
+### SpiralMatrix( [dimension](#dimension) [, [turn](#turn)] [, [bearing](#bearing)] [, [start](#start)] [, [step](#step)] [, [file](#file)] [, [words](#words)] )
 
 ### Instantiation and usage example:
     >>> from spiral_matrix import SpiralMatrix
@@ -270,7 +270,7 @@ through its rows and columns. Pretty-printing it can be done using the
 
 ### Public method:
 
-#### [.show](#interface-contents "Interface Contents")([axes])
+#### [.show](#interface-contents "Interface Contents")( [axes] )
   - _description_ - print the matrix structure to the console
   - _parameter:_
     - **axes**
