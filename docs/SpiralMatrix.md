@@ -12,7 +12,7 @@ Once instantiated, the object's [`.matrix`](#matrix) attribute contains the
 actual matrix structure. The printing to the console or other manipulation of
 the [`.matrix`](#matrix) structure can be accomplished manually by looping
 through its rows and columns. Pretty-printing it can be done using the
-[`.show()`](#showaxes) method.
+[`.show()`](#show-axes) method.
 
 ---
 
