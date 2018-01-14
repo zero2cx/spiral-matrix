@@ -1,0 +1,7 @@
+include README.*
+include LICENSE
+include MANIFEST.in
+recursive-include docs *
+recursive-include bin *
+recursive-include tests *
+global-exclude __pycache__ *.py[cod]
