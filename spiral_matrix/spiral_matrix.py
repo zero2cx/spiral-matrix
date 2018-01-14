@@ -59,7 +59,7 @@ class SpiralMatrix():
         'W': W, 'WEST': W,
         'S': S, 'SOUTH': S
     }
-    '''Map the compass-based vectors to relative-left and -right vectors.'''
+    '''Map each compass-based vector to its relative-left and -right vector.'''
     vector = {
         'left': { E: N, N: W, W: S, S: E },
         'right': { E: S, S: W, W: N, N: E }
@@ -68,20 +68,20 @@ class SpiralMatrix():
     def __init__(self, dimension=None, right=False, bearing='E', start=1,
             step=1, file=None, words=None):
         '''
-        Create a new instance of a 2-d spiral matrix.
+        Generate a new instance of SpiralMatrix.
 
         Description of instance attributes:
-            dimension : int : row- and column-count of the matrix
+            dimension : int : row- or column-count of the squared-shaped matrix
             turn      : left/right : direction of the spiral progression
-            bearing   : E/N/W/S : initial compass bearing
-            start     : int : numeric value inside the origin cell
-            step      : int : increment-step of a numeric progression
-            origin    : y,x : coordinates of the center cell
+            bearing   : E/N/W/S : initial compass bearing relative to the origin
+            start     : int : numeric value populating the origin
+            step      : int : incrementing step value of the numeric progression
+            origin    : y,x : grid coordinates of the center cell
             max       : int : stop the progression-loop at this loop-count
-            file      : file : named file containing space-delimited elements
-            words     : str : string of space-delimited elements
-            series    : list : list of elements with which to fill the cells
-            width     : int : width of one cell, in character-count
+            file      : file : named file containing space-delimited word tokens
+            words     : str : string of space-delimited word tokens
+            series    : list : list of elements with which to populate the cells
+            width     : int : width of each matrix cell, in character-count
         '''
         try:
             self.dimension = int(dimension) if int(dimension) else 'invalid'
@@ -102,12 +102,12 @@ class SpiralMatrix():
             self.width = self._width()
         except:
             raise AttributeError
-        '''Build the matrix that conforms to the instance attributes.'''
+        '''Build the matrix structure that conforms to the attributes.'''
         self._build()
 
     def _series(self):
         '''
-        Populate the series of values that will fill the matrix cells.
+        Populate series with integer values to fill the matrix cells.
         '''
         start = self.start
         step = self.step
@@ -136,7 +136,7 @@ class SpiralMatrix():
 
     def _series_from_string(self):
         '''
-        Populate series using a string to fill the matrix cells.
+        Populate series using a space-delimited string to fill the matrix cells.
         '''
         words = self.words
         max = self.max
@@ -159,7 +159,7 @@ class SpiralMatrix():
         '''
         Populate the current cell with the currently indexed element of series.
 
-        Return an incremented series index-counter.
+        Increment the series index and return that index value.
         '''
         y, x = coords
         try:
@@ -170,9 +170,9 @@ class SpiralMatrix():
 
     def _look(self, location, look, bearing):
         '''
-        Determine the coords of the cell to the left/right of the current cell.
+        Determine cell coords of relative-left/right cell from the current cell.
 
-        Return the coords of that cell.
+        Return the cell coordinates.
         '''
         vector = self.vector[look][bearing]
         y, x = [sum(coords) for coords in zip(location, vector)]
@@ -184,7 +184,7 @@ class SpiralMatrix():
 
     def _turn(self, turn, bearing):
         '''
-        Return the new bearing that points directly to the left or right.
+        Return the relative bearing that points directly to the left or right.
         '''
         return self.vector[turn][bearing]
 
@@ -204,12 +204,12 @@ class SpiralMatrix():
         turn = self.turn
         index = 0
         max = self.max
-        '''Generate a 2-d matrix and populate the cells with 'None'.'''
+        '''Generate an empty list-of-lists, populate the cells with 'None'.'''
         self.matrix = []
         for i in range(dimension):
             self.matrix.append([None] * dimension)
-        '''Start in the origin cell and spiral outward, filling each cell
-        as the spiral progresses.'''
+        '''Start in the origin cell and spiral outward, populating each cell
+        with the next element of the series as the spiral progresses.'''
         index = self._fill(cell, index)                         # fill
         cell = self._move(cell, bearing)                        # move
         while index < max:
@@ -221,15 +221,15 @@ class SpiralMatrix():
 
     def show(self, axes=False):
         '''
-        Print the 2-d matrix with the column and row axes labelled, or without.
+        Print the 2-d matrix structure.
         '''
-        '''Print column-labels along the top, or not.'''
+        '''If needed, print column-labels.'''
         if axes:
             print('    ', end='')
             for n in range(self.dimension):
                 print('%*s ' % (self.width, n), end='')
             print()
-        '''Print the matrix. Include row-labels along the left side, or not.'''
+        '''Print the matrix structure. If needed, prefix row-labels.'''
         for i in range(self.dimension):
             if axes:
                 print('%2s  ' % (i), end='')
