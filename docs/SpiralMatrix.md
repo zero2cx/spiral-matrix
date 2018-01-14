@@ -51,7 +51,7 @@ through its rows and columns. Pretty-printing it can be done using the
     compass-based vector to its relative-left and -right compass-bearing
     dictionary key
   - [Public method](#public-method)
-    - [.show()](#showaxes) - print the matrix structure to the console
+    - [.show()](#show-axes-) - print the matrix structure to the console
 
 ---
 
