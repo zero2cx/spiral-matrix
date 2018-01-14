@@ -436,6 +436,6 @@ def main():
     m.show(args.axes)
 
 if __name__ == '__main__':
-    from sys import exit
+    from sys import exit, stdin
     import argparse
     main()
