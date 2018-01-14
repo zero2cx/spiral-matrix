@@ -31,12 +31,12 @@ through its rows and columns. Pretty-printing it can be done using the
     [series](#series)
     - [matrix](#matrix) - the [dimension](#dimension)-sized square-shaped 2-d
     matrix
-  - [Attributes - Default style](#attributes---default-style)
+  - [Additional attributes - Default style](#attributes---default-style)
     - [start](#start) - the integer value that fills the center cell, i.e. the
     start value of [series](#series)
     - [step](#step) - the integer value of the incrementing progression of
     [series](#series)
-  - [Attributes - Alternative style](#attributes---alternative-style)
+  - [Additional attributes - Alternative style](#attributes---alternative-style)
     - [file](#file) - name of the text file containing whitespace-delimited word
     tokens
     - [words](#words) - string of whitespace-delimited tokens, i.e. words
@@ -62,16 +62,20 @@ through its rows and columns. Pretty-printing it can be done using the
 ### Instantiation and usage example:
     >>> from spiral_matrix import SpiralMatrix
     >>> myMatrix = SpiralMatrix(9)
-    >>> print(myMatrix.dimension)
+    >>> myMatrix.dimension
     9
-    >>> print(myMatrix.max)
+    >>> myMatrix.max
     81
-    >>> print(myMatrix.matrix)
-    [[65, 64, 63, 62, 61, 60, 59, 58, 57], [66, 37, 36, 35, 34, 33, 32, 31,
-    56], [67, 38, 17, 16, 15, 14, 13, 30, 55], [68, 39, 18, 5, 4, 3, 12, 29
-    , 54], [69, 40, 19, 6, 1, 2, 11, 28, 53], [70, 41, 20, 7, 8, 9, 10, 27,
-    52], [71, 42, 21, 22, 23, 24, 25, 26, 51], [72, 43, 44, 45, 46, 47, 48,
-    49, 50], [73, 74, 75, 76, 77, 78, 79, 80, 81]]
+    >>> myMatrix.matrix
+    [[65, 64, 63, 62, 61, 60, 59, 58, 57],
+     [66, 37, 36, 35, 34, 33, 32, 31, 56],
+     [67, 38, 17, 16, 15, 14, 13, 30, 55],
+     [68, 39, 18, 5, 4, 3, 12, 29, 54],
+     [69, 40, 19, 6, 1, 2, 11, 28, 53],
+     [70, 41, 20, 7, 8, 9, 10, 27, 52],
+     [71, 42, 21, 22, 23, 24, 25, 26, 51],
+     [72, 43, 44, 45, 46, 47, 48, 49, 50],
+     [73, 74, 75, 76, 77, 78, 79, 80, 81]]
 
 ### Attributes:
 
@@ -235,8 +239,8 @@ through its rows and columns. Pretty-printing it can be done using the
 ---
 
 #### [compass](#interface-contents "Interface Contents")
-  - _description_ - map of each string representation to the dictionary key,
-  used to look up the corresponding tuple value
+  - _description_ - map of string representations to the dictionary key used to
+  look up the corresponding tuple value
   - _value_ - dictionary:
     - 'E': E
     - 'EAST': E
@@ -250,8 +254,8 @@ through its rows and columns. Pretty-printing it can be done using the
 ---
 
 #### [vector](#interface-contents "Interface Contents")
-  - _description_ - a nested dictionary structure that maps each compass-based
-  vector to its relative-left and -right compass-bearing dictionary key
+  - _description_ - a nested dictionary structure that maps each compass-bearing
+  to its relative-left and -right compass-bearing
   - _value_ - dictionary:
     - 'left'
       - _value_ - dictionary:
