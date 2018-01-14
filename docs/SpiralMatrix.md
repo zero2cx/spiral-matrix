@@ -48,8 +48,7 @@ through its rows and columns. Pretty-printing it can be done using the
     - [compass](#compass) - map of each string representation to the dictionary
     key used to look up its corresponding tuple value
     - [vector](#vector) - a nested dictionary structure that maps each
-    compass-based vector to its relative-left and -right compass-bearing
-    dictionary key
+    compass-bearing to its relative-left and -right compass-bearing
   - [Public method](#public-method)
     - [.show()](#show-axes-) - print the matrix structure to the console
 
