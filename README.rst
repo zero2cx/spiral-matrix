@@ -31,7 +31,7 @@ element of the series.
 This remainder of this document details the practical application of
 executing SpiralMatrix from the command-line. For documentation on usage
 of SpiralMatrix when importing the code as a Python 3.x module, please
-`click here <./docs/SpiralMatrix.md>`__.
+`click here <./docs/SpiralMatrix.rst>`__.
 
 Required parameter
 ^^^^^^^^^^^^^^^^^^
@@ -151,19 +151,19 @@ of populating the cells with the series of incrementing integers.
    9x9, spiral: right, series: stormy_night
 
 PyPI: [presently unsubmitted]
-                             
+
 
 Repo: https://github.com/zero2cx/spiral-matrix
-                                              
+
 
 License: GPL3+
-              
+
 
 Document version: 1.0
-                     
+
 
 Modified: 01/13/2018
-                    
+
 
 Author: David Schenck
-                     
+
