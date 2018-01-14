@@ -1,10 +1,17 @@
 
 # SpirtalMatrix Progamming Interface
 
+<<<<<<< HEAD
 Instantiating the SpiralMatrix class generates a spiral matrix grid structure
 that conforms to the specified parameters passed from the caller. The module is
 written in Python 3.x and is imported into your project with `import
 spiral_matrix` or `from spiral_matrix import SpiralMatrix`.
+=======
+Instantiating the SpiralMatrix class generates a spiral matrix that conforms to
+the specified parameters passed from the caller. The module is written in Python
+3.x and is imported into your project with `import spiral_matrix` or `from
+spiral_matrix import SpiralMatrix`.
+>>>>>>> 74190ebe03c6a90919f40518d6671d37c4ed4292
 
 For details of the command-line interface for this module, please [click here](../README.md "The command-line interface").
 
