@@ -20,12 +20,12 @@ through its rows and columns. Pretty-printing it can be done using the
 - [SpiralMatrix class](#spiralmatrix-class)
   - [Attributes](#attributes)
     - [dimension](#dimension) - the count of rows or columns
+    - [origin](#origin) - the coordinates of the center cell
+    - [bearing](#bearing) - the [compass bearing](#compass-bearings) that
     - [turn](#turn) - the direction of the spiral, i.e. winding to the left, or
     to the right
-    - [bearing](#bearing) - the [compass bearing](#compass-bearings) that
     initiates the spiral progression outward from the center
     - [max](#max) - the count of cells
-    - [origin](#origin) - the coordinates of the center cell
     - [series](#series) - the series of values used to populate the cells
     - [width](#width) - the width (in characters) of the widest element of
     [series](#series)
@@ -87,12 +87,14 @@ through its rows and columns. Pretty-printing it can be done using the
 
 ---
 
-#### [turn](#interface-contents "Interface Contents")
-  - _description_ - the direction of the spiral, i.e. winding to the left, or to
-  the right
-  - _type_ - string value
-  - _note_ - constrained to 'left' or 'right' only
-  - _default_ - 'left'
+#### [origin](#interface-contents "Interface Contents")
+  - _description_ - the coordinates of the center cell
+  - _type_ - 2-tuple, (integer value, integer value)
+  - _notes:_
+    - zero-based coordinate system
+    - vertical axis first, i.e. (y,x)
+    - computed by formula:
+      - origin = ([dimension](#dimension) // 2, [dimension](#dimension) // 2)
 
 ---
 
@@ -109,22 +111,20 @@ through its rows and columns. Pretty-printing it can be done using the
 
 ---
 
+#### [turn](#interface-contents "Interface Contents")
+  - _description_ - the direction of the spiral, i.e. winding to the left, or to
+  the right
+  - _type_ - string value
+  - _note_ - constrained to 'left' or 'right' only
+  - _default_ - 'left'
+
+---
+
 #### [max](#interface-contents "Interface Contents")
   - _description_ - the count of cells
   - _type_ - integer value
   - _note_ - computed by formula:
     - max = [dimension](#dimension) * [dimension](#dimension)
-
----
-
-#### [origin](#interface-contents "Interface Contents")
-  - _description_ - the coordinates of the center cell
-  - _type_ - 2-tuple, (integer value, integer value)
-  - _notes:_
-    - zero-based coordinate system
-    - vertical axis first, i.e. (y,x)
-    - computed by formula:
-      - origin = ([dimension](#dimension) // 2, [dimension](#dimension) // 2)
 
 ---
 
@@ -158,8 +158,8 @@ through its rows and columns. Pretty-printing it can be done using the
   - _description_ - the [dimension](#dimension)-sized square-shaped 2-d matrix
   - _type_ - list of lists
   - _notes:_
-    - zero-based coordinate system
-    - vertical axis first, i.e. (y,x)
+    - zero-based grid coordinate system
+    - vertical axis first and horizontal second, i.e. (y,x)
     - each cell is populated by one element of [series](#series)
 
 ---

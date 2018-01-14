@@ -35,10 +35,10 @@ when importing the code as a Python 3.x module, please [click here](./docs/Spira
 #### General-purpose options
 
 Column and row axis-labels along the top- and left-side can be prefixed to
-the printed output. The spiral can progress in either a clockwise or
-counter-clockwise manner. Proceeding outward from the center cell in one
-compass direction or bearing, i.e East, North, West, or South, initiates the
-progression of the spiral.
+the printed output. Proceeding outward from the center cell in one compass
+direction or bearing, i.e East, North, West, or South, initiates the
+progression of the spiral. The spiral can progress in either a clockwise or
+counter-clockwise manner.
 
 ![7x7 with axes, bearing: south, center: 1000, step: -300](docs/images/spiral_matrix_7+axes+bearing_south+center1000+step-300.png "7x7 with axes, bearing: south, center: 1000, step: -300")
 
@@ -47,6 +47,12 @@ progression of the spiral.
         prefixing of column- and row-axes labels along the
         top- and left-side of the printed output.
         (default: False)
+
+    --bearing EAST | NORTH | WEST | SOUTH
+        This compass bearing (E, N, W, or S) specifies
+        the direction that is used to proceed initially
+        outward from the center of the matrix.
+        (default: E)
 
     --right
         This parameter-less option generates a spiral
@@ -58,12 +64,6 @@ progression of the spiral.
         which progresses in a counter-clockwise manner,
         which is the default behavior. Not for use with
         'right'. Included for completeness.
-
-    --bearing EAST | NORTH | WEST | SOUTH
-        This compass bearing (E, N, W, or S) specifies
-        the direction that is used to proceed initially
-        outward from the center of the matrix.
-        (default: E)
 
 #### Options for the default style of integer-populated matrix cells
 

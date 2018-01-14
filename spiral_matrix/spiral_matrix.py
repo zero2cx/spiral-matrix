@@ -32,10 +32,10 @@ class SpiralMatrix():
     each cell in the matrix is populated with one element of the series.
 
     Column and row axis-labels along the top- and left-side can be prefixed to
-    the printed output. The spiral can progress in either a clockwise or
-    counter-clockwise manner. Proceeding outward from the center cell in one
-    compass direction or bearing, i.e East, North, West, or South, initiates the
-    progression of the spiral.
+    the printed output. Proceeding outward from the center cell in one compass
+    direction or bearing, i.e East, North, West, or South, initiates the
+    progression of the spiral. The spiral can progress in either a clockwise or
+    counter-clockwise manner.
 
     The default style for the generated matrix consists of the series of
     integers that begin with 1 and then increment by 1 for each member of the
@@ -65,19 +65,19 @@ class SpiralMatrix():
         'right': { E: S, S: W, W: N, N: E }
     }
 
-    def __init__(self, dimension=None, turn=False, bearing='E', start=1,
-            step=1, file=None, words=None):
+    def __init__(self, dimension=None, bearing='E', turn=False,
+            start=1, step=1, file=None, words=None):
         '''
         Generate a new instance of SpiralMatrix.
 
         Description of instance attributes:
             dimension : int : row- or column-count of the squared-shaped matrix
-            turn      : left/right : direction of the spiral progression
+            origin    : y,x : grid coordinates of the center cell
             bearing   : E/N/W/S : initial compass bearing relative to the origin
+            turn      : left/right : direction of the spiral progression
+            max       : int : stop the progression-loop at this loop-count
             start     : int : numeric value populating the origin
             step      : int : incrementing step value of the numeric progression
-            origin    : y,x : grid coordinates of the center cell
-            max       : int : stop the progression-loop at this loop-count
             file      : file : named file containing space-delimited word tokens
             words     : str : string of space-delimited word tokens
             series    : list : list of elements with which to populate the cells
@@ -85,12 +85,12 @@ class SpiralMatrix():
         '''
         try:
             self.dimension = int(dimension) if int(dimension) else 'invalid'
-            self.turn = 'right' if turn else 'left'
+            self.origin = (int(self.dimension // 2), int(self.dimension // 2))
             self.bearing = self.compass[bearing]
+            self.turn = 'right' if turn else 'left'
+            self.max = self.dimension ** 2
             self.start = start
             self.step = step
-            self.origin = (int(self.dimension // 2), int(self.dimension // 2))
-            self.max = self.dimension ** 2
             self.file = file
             self.words = words
             if self.file:
@@ -351,6 +351,12 @@ def _configure_parser():
             'prefixing of column- and row-axes labels along the '
             'top- and left-side of the printed output. '
             '(default: False)')
+    parser.add_argument('-b','--bearing', type=_is_bearing,
+            default='E',
+            help='This compass bearing (N, E, S, or W) specifies '
+            'the direction that is used to proceed initially '
+            'outward from the center of the matrix. '
+            '(default: E)')
     spiral_group = parser.add_mutually_exclusive_group()
     spiral_group.add_argument('-r', '--right', action='store_true',
             default=False,
@@ -363,12 +369,6 @@ def _configure_parser():
             'which progresses in a counter-clockwise manner, '
             'which is the default spiral direction. Not for use '
             'with \'right\'. Included for completeness.')
-    parser.add_argument('-b','--bearing', type=_is_bearing,
-            default='E',
-            help='This compass bearing (N, E, S, or W) specifies '
-            'the direction that is used to proceed initially '
-            'outward from the center of the matrix. '
-            '(default: E)')
     integers_group = parser.add_argument_group('Integer-filled matrix options',
             'Matrix cells are filled with incrementing integers, by default.')
     integers_group.add_argument('-c', '--center', type=int,
@@ -413,8 +413,9 @@ def main():
         args.words = sys.stdin.read()
     '''Build and print the spiral matrix using the parsed arguments.'''
     try:
-        m = SpiralMatrix(dimension=args.DIMENSION, turn=args.right,
-                bearing=args.bearing, start=args.center, step=args.step,
+        m = SpiralMatrix(
+                dimension=args.DIMENSION, bearing=args.bearing, turn=args.right,
+                start=args.center, step=args.step,
                 file=args.file, words=args.words)
     except AttributeError:
         sys.exit('** AttributeError: %s\n   Attributes List: %s' % (
