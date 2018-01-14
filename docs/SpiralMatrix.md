@@ -22,8 +22,8 @@ through its rows and columns. Pretty-printing it can be done using the
     - [dimension](#dimension) - the count of rows or columns
     - [turn](#turn) - the direction of the spiral, i.e. winding to the left, or
     to the right
-    - [bearing](#bearing) - the [compass](#compass) bearing that initiates the
-    spiral progression
+    - [bearing](#bearing) - the [compass](#compass-bearings) bearing that
+    initiates the spiral progression outward from the center
     - [max](#max) - the count of cells
     - [origin](#origin) - the coordinates of the center cell
     - [series](#series) - the series of values used to populate the cells
@@ -41,12 +41,12 @@ through its rows and columns. Pretty-printing it can be done using the
     tokens
     - [words](#words) - string of whitespace-delimited tokens, i.e. words
   - [Class attributes](#class-attributes)
-    - [E](#e) - an equivalent of compass-east
-    - [N](#n) - an equivalent of compass-north
-    - [W](#w) - an equivalent of compass-west
-    - [S](#s) - an equivalent of compass-south
+    - [E](#e) - relative-to-current axis-adjustment towards compass-east
+    - [N](#n) - relative-to-current axis-adjustment towards compass-north
+    - [W](#w) - relative-to-current axis-adjustment towards compass-west
+    - [S](#s) - relative-to-current axis-adjustment towards compass-south
     - [compass](#compass) - map of each string representation to the dictionary
-    key, used to look up the corresponding tuple value
+    key used to look up its corresponding tuple value
     - [vector](#vector) - a nested dictionary structure that maps each
     compass-based vector to its relative-left and -right compass-bearing
     dictionary key
@@ -98,8 +98,8 @@ through its rows and columns. Pretty-printing it can be done using the
 ---
 
 #### [bearing](#interface-contents "Interface Contents")
-  - _description_ - the [compass](#compass) bearing that initiates the spiral
-  progression
+  - _description_ - the [compass](#compass-bearings) bearing that initiates the
+  spiral progression outward from the center
   - _type_ - string value (case indifferrent)
   - _note_ - constrained to:
     - 'E' or 'East'
@@ -211,36 +211,36 @@ through its rows and columns. Pretty-printing it can be done using the
   (y, x) coordinates
 
 #### [E](#interface-contents "Interface Contents")
-  - _description_ - an equivalent of compass-east
+  - _description_ - relative-to-current axis-adjustment towards compass-east
   - _value_ - 2-tuple, (0, 1)
   - _note_ - 0 along the vertical axis, and +1 along the horizontal axis
 
 ---
 
 #### [N](#interface-contents "Interface Contents")
-  - _description_ - an equivalent of compass-north
+  - _description_ - relative-to-current axis-adjustment towards compass-north
   - _value_ - 2-tuple, (-1, 0)
   - _note_ - -1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
 #### [W](#interface-contents "Interface Contents")
-  - _description_ - an equivalent of compass-west
+  - _description_ - relative-to-current axis-adjustment towards compass-west
   - _value_ - 2-tuple, (0, -1)
   - _note_ - 0 along the vertical axis, and -1 along the horizontal axis
 
 ---
 
 #### [S](#interface-contents "Interface Contents")
-  - _description_ - an equivalent of compass-south
+  - _description_ - relative-to-current axis-adjustment towards compass-south
   - _value_ - 2-tuple, (1, 0)
   - _note_ - +1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
 #### [compass](#interface-contents "Interface Contents")
-  - _description_ - map of string representations to the dictionary key used to
-  look up the corresponding tuple value
+  - _description_ - map of each string representation to the dictionary key used
+  to look up its corresponding tuple value
   - _value_ - dictionary:
     - 'E': E
     - 'EAST': E
