@@ -430,12 +430,12 @@ def main():
                 start=args.center, step=args.step,
                 file=args.file, words=args.words)
     except AttributeError:
-        sys.exit('** AttributeError: %s\n   Attributes List: %s' % (
+        exit('** AttributeError: %s\n   Attributes List: %s' % (
                 'could not instantiate SpiralMatrix',
                 str(vars(args)).strip('{}')))
     m.show(args.axes)
 
 if __name__ == '__main__':
-    import sys
+    from sys import exit
     import argparse
     main()
