@@ -422,7 +422,7 @@ def main():
     parser = _configure_parser()
     args = parser.parse_args()
     if args.words == None:
-        args.words = sys.stdin.read()
+        args.words = stdin.read()
     '''Build and print the spiral matrix using the parsed arguments.'''
     try:
         m = SpiralMatrix(
@@ -436,6 +436,6 @@ def main():
     m.show(args.axes)
 
 if __name__ == '__main__':
-    from sys import exit
+    from sys import exit, stdin
     import argparse
     main()
