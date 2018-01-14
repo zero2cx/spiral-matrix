@@ -65,7 +65,7 @@ class SpiralMatrix():
         'right': { E: S, S: W, W: N, N: E }
     }
 
-    def __init__(self, dimension=None, right=False, bearing='E', start=1,
+    def __init__(self, dimension=None, turn=False, bearing='E', start=1,
             step=1, file=None, words=None):
         '''
         Generate a new instance of SpiralMatrix.
@@ -85,7 +85,7 @@ class SpiralMatrix():
         '''
         try:
             self.dimension = int(dimension) if int(dimension) else 'invalid'
-            self.turn = 'right' if right else 'left'
+            self.turn = 'right' if turn else 'left'
             self.bearing = self.compass[bearing]
             self.start = start
             self.step = step
@@ -413,7 +413,7 @@ def main():
         args.words = sys.stdin.read()
     '''Build and print the spiral matrix using the parsed arguments.'''
     try:
-        m = SpiralMatrix(dimension=args.DIMENSION, right=args.right,
+        m = SpiralMatrix(dimension=args.DIMENSION, turn=args.right,
                 bearing=args.bearing, start=args.center, step=args.step,
                 file=args.file, words=args.words)
     except AttributeError:
