@@ -16,29 +16,39 @@ manually or via the object's [`.show()`](#showaxes) method.
 ## Interface Contents
 - [SpiralMatrix class](#spiralmatrix-class)
   - [Attributes](#attributes)
-    - [dimension](#dimension)
-    - [turn](#turn)
-    - [bearing](#bearing)
-    - [max](#max)
-    - [origin](#origin)
-    - [series](#series)
-    - [width](#width)
-    - [matrix](#matrix)
+    - [dimension](#dimension) - the count of rows or columns
+    - [turn](#turn) - the direction of the spiral, i.e. winding to the left, or
+    to the right
+    - [bearing](#bearing) - the [compass](#compass) bearing that initiates the
+    spiral progression
+    - [max](#max) - the count of cells
+    - [origin](#origin) - the coordinates of the center cell
+    - [series](#series) - the series of values used to populate the cells
+    - [width](#width) - the width (in characters) of the widest element of
+    [series](#series)
+    - [matrix](#matrix) - the [dimension](#dimension)-sized square-shaped 2-d
+    matrix
   - [Attributes - Default style](#attributes---default-style)
-    - [start](#start)
-    - [step](#step)
+    - [start](#start) - the integer value that fills the center cell, i.e. the
+    start value of [series](#series)
+    - [step](#step) - the integer value of the incrementing progression of
+    [series](#series)
   - [Attributes - Alternative style](#attributes---alternative-style)
-    - [file](#file)
-    - [words](#words)
+    - [file](#file) - name of the text file containing whitespace-delimited word
+    tokens
+    - [words](#words) - string of whitespace-delimited tokens, i.e. words
   - [Class attributes](#class-attributes)
-    - [E](#e)
-    - [N](#n)
-    - [W](#w)
-    - [S](#s)
-    - [compass](#compass)
-    - [vector](#vector)
+    - [E](#e) - an equivalent of compass-east
+    - [N](#n) - an equivalent of compass-north
+    - [W](#w) - an equivalent of compass-west
+    - [S](#s) - an equivalent of compass-south
+    - [compass](#compass) - map of each string representation to the dictionary
+    key, used to look up the corresponding tuple value
+    - [vector](#vector) - a nested dictionary structure that maps each
+    compass-based vector to its relative-left and -right compass-bearing
+    dictionary key
   - [Public method](#public-method)
-    - [.show()](#showaxes)
+    - [.show()](#showaxes) - print the matrix structure to the console
 
 ---
 
@@ -64,7 +74,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 
 
 #### dimension
-  - _description_ - the count of matrix rows or columns
+  - _description_ - the count of rows or columns
   - _type_ - integer value
   - _note_ - constrained to odd integers only
   - _default_ - none **(required parameter)**
@@ -81,7 +91,8 @@ manually or via the object's [`.show()`](#showaxes) method.
 ---
 
 #### bearing
-  - _description_ - the compass direction that initiates the spiral progression
+  - _description_ - the [compass](#compass) bearing that initiates the spiral
+  progression
   - _type_ - string value (case indifferrent)
   - _note_ - constrained to:
     - 'E' or 'East'
@@ -93,7 +104,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 ---
 
 #### max
-  - _description_ - the length of the series of values used to fill the cells
+  - _description_ - the count of cells
   - _type_ - integer value
   - _note_ - computed by formula:
     - max = [dimension](#dimension) * [dimension](#dimension)
@@ -101,7 +112,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 ---
 
 #### origin
-  - _description_ - the matrix coordinates of the center cell
+  - _description_ - the coordinates of the center cell
   - _type_ - 2-tuple, (integer value, integer value)
   - _notes:_
     - zero-based coordinate system
@@ -112,8 +123,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 ---
 
 #### series
-  - _description_ - the series of values used to populate the cells of the
-  matrix
+  - _description_ - the series of values used to populate the cells
   - _type_ - list, of length [max](#max)
   - _notes:_
     - [_default_](#additional-attributes---default-style) - list of incrementing
@@ -179,7 +189,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 ---
 
 #### words
-  - _description_ - whitespace-delimited tokens, i.e. words
+  - _description_ - string of whitespace-delimited tokens, i.e. words
   - _type_ - string value
   - _note_ - when the string value is omitted, then text from stdin is accepted
   - _default_ - not used
@@ -194,36 +204,36 @@ manually or via the object's [`.show()`](#showaxes) method.
   (y, x) coordinates
 
 #### E
-  - _description_ - An equivalent of compass-east
+  - _description_ - an equivalent of compass-east
   - _value_ - 2-tuple, (0, 1)
   - _note_ - 0 along the vertical axis, and +1 along the horizontal axis
 
 ---
 
 #### N
-  - _description_ - An equivalent of compass-north
+  - _description_ - an equivalent of compass-north
   - _value_ - 2-tuple, (-1, 0)
   - _note_ - -1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
 #### W
-  - _description_ - An equivalent of compass-west
+  - _description_ - an equivalent of compass-west
   - _value_ - 2-tuple, (0, -1)
   - _note_ - 0 along the vertical axis, and -1 along the horizontal axis
 
 ---
 
 #### S
-  - _description_ - An equivalent of compass-south
+  - _description_ - an equivalent of compass-south
   - _value_ - 2-tuple, (1, 0)
   - _note_ - +1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
 #### compass
-  - _description_ - Map each string representation to a dictionary key used to
-  look up the corresponding tuple value for that key
+  - _description_ - map of each string representation to the dictionary key,
+  used to look up the corresponding tuple value
   - _value_ - dictionary:
     - 'E': E
     - 'EAST': E
@@ -237,7 +247,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 ---
 
 #### vector
-  - _description_ - Use a nested dictionary structure to map each compass-based
+  - _description_ - a nested dictionary structure that maps each compass-based
   vector to its relative-left and -right compass-bearing dictionary key
   - _value_ - dictionary:
     - 'left'
@@ -258,6 +268,7 @@ manually or via the object's [`.show()`](#showaxes) method.
 ### Public method:
 
 #### .show([[axes](#axes)])
+  - _description_ - print the matrix structure to the console
 
 ### Usage example:
     >>> myMatrix.show(True)
