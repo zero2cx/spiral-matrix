@@ -1,3 +1,4 @@
+
 # SpirtalMatrix Progamming Interface
 
 The SpiralMatrix class instantiates an object which generates a spiral matrix of
@@ -14,7 +15,7 @@ manually or via the object's [`.show()`](#show) method.
 
 ## SpiralMatrix class
 
-### SpiralMatrix([dimension](#dimension) [, [right](#right)] [, [bearing](#bearing)] [, [start](#start)] [, [step](#step)] [, [file](#file)] [, [words](#words)])
+### SpiralMatrix([dimension](#dimension) [, [turn](#turn)] [, [bearing](#bearing)] [, [start](#start)] [, [step](#step)] [, [file](#file)] [, [words](#words)])
 
 ### Instantiation and usage example:
     >>> from spiral_matrix import SpiralMatrix
@@ -30,14 +31,14 @@ manually or via the object's [`.show()`](#show) method.
     52], [71, 42, 21, 22, 23, 24, 25, 26, 51], [72, 43, 44, 45, 46, 47, 48,
     49, 50], [73, 74, 75, 76, 77, 78, 79, 80, 81]]
 
-### Attributes (always utilized):
+### Attributes:
 
 
 #### dimension
-  - _description_ - the count of matrix rows and columns
+  - _description_ - the count of matrix rows or columns
   - _type_ - integer value
   - _note_ - constrained to odd integers only
-  - _default_ - none (required parameter)
+  - _default_ - none **(required parameter)**
 
 ---
 
@@ -82,11 +83,13 @@ manually or via the object's [`.show()`](#show) method.
 
 #### series
   - _description_ - the series of values used to populate the cells of the matrix
-  - _type_ - list, of length max
-  - _note_ - the default list values are over-ridden by the usage of either attribute:
-    - [file](#file)
-    - [words](#words)
-  - _default_ - list of incrementing integer values, initiating with 1
+  - _type_ - list, of length [max](#max)
+  - _notes:_
+    - [_default_](#Additional attributes - default style) - list of incrementing integer values
+    - [_alternative_](#Additional attributes - alternative style) - list of supplied word tokens
+    - the default style is over-ridden by the usage of either of these attributes:
+      - [file](#file)
+      - [words](#words)
 
 ---
 
@@ -98,69 +101,88 @@ manually or via the object's [`.show()`](#show) method.
 
 ---
 
-### Attributes (utilized only when the default style is used):
+#### matrix
+  - _description_ - the [dimension](#dimension)-sized square-shaped 2-d matrix
+  - _type_ - list of lists
+  - _notes:_
+    - zero-based coordinate system
+    - vertical axis first, i.e. (y,x)
+    - each cell is populated by one element of [series](#series)
+
+---
+
+### Additional attributes - default style:
 
 
 #### start
   - _description_ - the integer value that fills the center cell, i.e. the start value of [series](#series)
-  - _type_ -
-  - _note_ -
+  - _type_ - integer value
+  - _note_ - any positive, negative, or zero integer value is acceptable
+  - _default_ - 1
 
 ---
 
 #### step
   - _description_ - the integer value of the incrementing progression
-  - _type_ -
-  - _note_ -
+  - _type_ - integer value
+  - _note_ - only a positive or negative, non-zero integer value is acceptable
+  - _default_ - 1
 
 ---
 
-### Attributes (utilized only  when the alternative style is used):
+### Additional attributes - alternative style:
 
 #### file
-  - _description_ - the name of the text file containing whitespace-delimited word tokens
-  - _type_ -
-  - _note_ -
+  - _description_ - name of the text file containing whitespace-delimited word tokens
+  - _type_ - local system filename
+  - _note_ - human-readable text files only
+  - _default_ - not used
 
 ---
 
 #### words
-  - _description_ - the string of whitespace-delimited tokens, i.e. words
-  - _type_ -
-  - _note_ -
+  - _description_ - whitespace-delimited tokens, i.e. words
+  - _type_ - string value
+  - _note_ - when the string value is omitted, then text from stdin is accepted
+  - _default_ - not used
 
 ---
 
 ### Class attributes:
 
-#### The four compass-based vectors:
+#### Compass bearings:
+  - _note_ - relative position (i.e. direction) from a specified cell is calculated by summing one of the tuple values detailed below with that cell's (y, x) coordinates
 
 #### E
   - _description_ - An equivalent of compass-east
   - _value_ - 2-tuple, (0, 1)
+  - _note_ - 0 along the vertical axis, and +1 along the horizontal axis
 
 ---
 
 #### N
   - _description_ - An equivalent of compass-north
   - _value_ - 2-tuple, (-1, 0)
+  - _note_ - -1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
 #### W
   - _description_ - An equivalent of compass-west
   - _value_ - 2-tuple, (0, -1)
+  - _note_ - 0 along the vertical axis, and -1 along the horizontal axis
 
 ---
 
 #### S
   - _description_ - An equivalent of compass-south
   - _value_ - 2-tuple, (1, 0)
+  - _note_ - 1 along the vertical axis, and 0 along the horizontal axis
 
 ---
 
 #### compass
-  - _description_ - Map each string representation to the corresponding tuple value
+  - _description_ - Map each string representation to a dictionary key used to look up the corresponding tuple value for that key
   - _value_ - dictionary:
     - 'E': E
     - 'EAST': E
@@ -174,7 +196,7 @@ manually or via the object's [`.show()`](#show) method.
 ---
 
 #### vector
-  - _description_ - Map each compass-based vector to its relative-left and -right vector using a nested dictionary.
+  - _description_ - Map each compass-based vector to its relative-left and -right vector tuple using a nested dictionary structure
   - _value_ - dictionary:
     - 'left'
       - _value_ - dictionary:
