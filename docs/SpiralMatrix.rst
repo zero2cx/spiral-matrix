@@ -10,11 +10,11 @@ project with ``import spiral_matrix`` or
 For details of the command-line interface for this module, please `click
 here <../README.md>`__.
 
-Once instantiated, the object’s ```.matrix`` <#matrix>`__ attribute
+Once instantiated, the object’s `.matrix <#matrix>`__ attribute
 contains the actual matrix structure. The printing to the console or
-other manipulation of the ```.matrix`` <#matrix>`__ structure can be
+other manipulation of the `.matrix <#matrix>`__ structure can be
 accomplished manually by looping through its rows and columns.
-Pretty-printing it can be done using the ```.show()`` <#show-axes->`__
+Pretty-printing it can be done using the `.show() <#show-axes->`__
 method.
 
 --------------
