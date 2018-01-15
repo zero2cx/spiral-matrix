@@ -21,7 +21,7 @@ setup(
     author_email = 'zero2cx@gmail.com',
     license='GPL3+',
     url = 'https://github.com/zero2cx/spiral-matrix',
-    download_url = 'https://github.com/zero2cx/spiral-matrix/archive/0.1a1.tar.gz',
+    download_url = 'https://github.com/zero2cx/spiral-matrix/archive/v0.1a1.tar.gz',
     include_package_data = True,
     python_requires = '>=3',
     keywords = ['spiral-matrix', '2d-matrix', 'matrix', 'command-line'],
