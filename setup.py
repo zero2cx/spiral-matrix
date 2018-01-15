@@ -11,8 +11,8 @@ def readme(filename):
     return README
 
 setup(
-    name = 'SpiralMatrix',
-    version = '0.1-a1',
+    name = 'spiral-matrix',
+    version = '0.1a1',
     packages = find_packages(),
     description = 'Generate a square 2-d matrix with an outward-spiraling '
             'series of elements',
