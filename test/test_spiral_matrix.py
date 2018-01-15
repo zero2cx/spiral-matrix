@@ -27,14 +27,14 @@ class SpiralMatrixInstantiationTestCase(unittest.TestCase):
     def test_build(self):
 
         pass_configs = [
-            { 'dimension': 5, 'right': False, 'bearing': 'E', 'start': 1,
+            { 'dimension': 5, 'bearing': 'E', 'right': False, 'start': 1,
               'step': 1, 'file': None, 'words': None,
               'want_matrix': [[17, 16, 15, 14, 13],
                               [18,  5,  4,  3, 12],
                               [19,  6,  1,  2, 11],
                               [20,  7,  8,  9, 10],
                               [21, 22, 23, 24, 25]] },
-            { 'dimension': 3, 'right': True, 'bearing': 'N', 'start': 1,
+            { 'dimension': 3, 'bearing': 'N', 'right': True, 'start': 1,
               'step': 1, 'file': None,
               'words': 'eenie meenie minie moe',
               'want_matrix': [['eenie', 'meenie', 'minie'],
