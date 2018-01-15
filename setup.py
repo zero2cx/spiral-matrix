@@ -16,7 +16,7 @@ setup(
     packages = find_packages(),
     description = 'Generate a square 2-d matrix with an outward-spiraling '
             'series of elements',
-    long_description = readme('README.rst')
+    long_description = readme('README.rst'),
     author = 'David Schenck',
     author_email = 'zero2cx@gmail.com',
     license='GPL3+',
