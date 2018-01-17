@@ -2,4 +2,5 @@
 *.pyo
 *.swp
 *.egg-info
+dist/
 python/
