@@ -419,20 +419,20 @@ Usage example:
 
 --------------
 
-PyPI: https://testpypi.python.org/pypi?name=spiral-matrix&version=0.1.2a1&:action=display
+pypi: https://testpypi.python.org/pypi?name=spiral-matrix&version=0.1.2a2&:action=display
 
 
-Code Repo: https://github.com/zero2cx/spiral-matrix
+code repo: https://github.com/zero2cx/spiral-matrix
 
 
-License: GPL3+
+license: GPL3+
 
 
-Document version: 1.0
+document version: 1.0
 
 
-Modified: 01/14/2018
+modified: 01/14/2018
 
 
-Author: David Schenck
+author: David Schenck
 
