@@ -13,7 +13,7 @@ def readme(filename):
 
 setup(
     name = 'spiral-matrix',
-    version = '0.1.2a2',
+    version = '0.1.2a3',
     packages = find_packages(),
     description = 'Generate a square 2-d matrix with an outward-spiraling '
             'series of elements',
@@ -25,7 +25,7 @@ setup(
     author_email = 'zero2cx@gmail.com',
     license='GPL3+',
     url = 'https://github.com/zero2cx/spiral-matrix',
-    download_url = 'https://github.com/zero2cx/spiral-matrix/archive/v0.1.2a2.tar.gz',
+    download_url = 'https://github.com/zero2cx/spiral-matrix/archive/v0.1.2a3.tar.gz',
     include_package_data = True,
     python_requires = '>=3',
     keywords = [

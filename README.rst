@@ -150,7 +150,7 @@ of populating the cells with the series of incrementing integers.
 
    9x9, spiral: right, series: stormy_night
 
-pypi: https://testpypi.python.org/pypi?name=spiral-matrix&version=0.1.2a2&:action=display
+pypi: https://testpypi.python.org/pypi?name=spiral-matrix&version=0.1.2a3&:action=display
 
 
 code repo: https://github.com/zero2cx/spiral-matrix
