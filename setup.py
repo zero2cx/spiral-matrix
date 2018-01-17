@@ -19,7 +19,7 @@ setup(
             'series of elements',
     long_description = readme('README.rst'),
     entry_points = {
-        'console_scripts': ['spiral-matrix = spiral_matrix.spial_matrix:main'],
+        'console_scripts': ['spiral-matrix = spiral_matrix.spiral_matrix:main'],
     },
     author = 'David Schenck',
     author_email = 'zero2cx@gmail.com',
