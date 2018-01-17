@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-# vim: set fileencoding=utf-8 :
+# encoding: utf-8
+# vim: set ff=unix fenc=utf-8 et ts=4 sts=4 sta sw=4:
 # command_line.py
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Configure the command-line interface for the spiral_matrix module.
 #   Project home: <https://github.com/zero2cx/spiral-matrix>
 #   Copyright (C) 2018 David Schenck
 #
@@ -28,119 +29,21 @@ class ArgumentError(Exception):
 ################################################################################
 class CommandLineInterface():
 
-    def __init__(self):
-        pass
+    def __init__(self, caller):
+        self.caller = caller
+        self.parser = self.configure_parser()
 
-    def arg_is_int(self, value):
-        '''
-        Argument contraint: integer value
-        '''
-        msg = '\'%s\' should be an integer value' % (str(value))
-        if value == None:
-            raise ArgumentError(msg)
-        try:
-            integer = int(value)
-        except ValueError:
-            raise ArgumentError(msg)
-        if not float(value).is_integer():
-            raise ArgumentError(msg)
-        return integer
-
-    def arg_is_gt0(self, value):
-        '''
-        Argument contraint: greater-than-zero numeric value
-        '''
-        msg = '\'%s\' should be a greater-than-zero numeric value' % (str(value))
-        try:
-            float(value)
-        except:
-            raise ArgumentError(msg)
-        if float(value) <= 0:
-            raise ArgumentError(msg)
-        return value
-
-    def arg_is_not0(self, value):
-        '''
-        Argument contraint: non-zero numeric value
-        '''
-        msg = '\'%s\' should be a non-zero numeric value' % (str(value))
-        try:
-            float(value)
-        except:
-            raise ArgumentError(msg)
-        if value == 0:
-            raise ArgumentError(msg)
-        return value
-
-    def arg_is_odd_int(self, value):
-        '''
-        Argument contraint: odd integer value
-        '''
-        msg = '\'%s\' should be an odd integer value' % (str(value))
-        try:
-            integer = self.arg_is_int(value)
-        except:
-            raise ArgumentError(msg)
-        if not integer % 2:
-            raise ArgumentError(msg)
-        return integer
-
-    def arg_is_not0_int(self, value):
-        '''
-        Argument contraint: non-zero integer value
-        '''
-        msg = '\'%s\' should be a non-zero integer value' % (str(value))
-        try:
-            integer = self.arg_is_int(value)
-            integer = self.arg_is_not0(integer)
-        except:
-            raise ArgumentError(msg)
-        return integer
-
-    def arg_is_gt0_odd_int(self, value):
-        '''
-        Argument contraint: positive, odd integer value
-        '''
-        msg = '\'%s\' should be a positive, odd integer value' % (str(value))
-        try:
-            integer = self.arg_is_odd_int(value)
-            integer = self.arg_is_gt0(integer)
-        except:
-            raise ArgumentError(msg)
-        return integer
-
-    def arg_is_bearing(self, value):
-        '''
-        Argument contraint: valid compass bearing as defined by SpiralMatrix
-        '''
-        uppercase_value = str(value).upper()
-        # bearing_list = list(SpiralMatrix.compass.keys())
-        bearing_list = ['E', 'N', 'W', 'S']
-        msg = '\'%s\' should be one of: %s' % (str(value), bearing_list)
-        if not uppercase_value in bearing_list:
-            raise ArgumentError(msg)
-        return uppercase_value
-
-    def configure_parser(self, description='DESCRIPTION HERE'):
+    def configure_parser(self):
         '''
         Configure the parser to process the command-line arguments.
 
         The parser will quit and print a help message in response to incoherent
         argument usage.
         '''
-        dim = [
-            [('DIMENSION', ), ('type', 'cli.arg_is_gt0_odd_int'),
-             ('help', 'This parameter is an integer value, and is limited '
-                      'to odd numbers only. This count of rows and columns '
-                      'constitute the constructed size of the the square-'
-                      'shaped 2-d matrix. (REQUIRED)')
-            ]
-        ]
-        cli = CommandLineInterface()
-        parser = argparse.ArgumentParser(description=description,
+        parser = argparse.ArgumentParser(description=self.caller.__doc__,
                 formatter_class=argparse.RawDescriptionHelpFormatter)
-        parser.add_argument('DIMENSION', type=cli.arg_is_gt0_odd_int,
-                help='This parameter is an integer value, and is limited '
+        parser.add_argument('DIMENSION', type=self.arg_is_gt0_odd_int,
+                help='This is an integer argument, and is limited '
                 'to odd numbers only. This count of rows and columns '
                 'constitute the constructed size of the the square-'
                 'shaped 2-d matrix. (REQUIRED)')
@@ -150,7 +53,7 @@ class CommandLineInterface():
                 'prefixing of column- and row-axes labels along the '
                 'top- and left-side of the printed output. '
                 '(default: False)')
-        parser.add_argument('-b','--bearing', type=cli.arg_is_bearing,
+        parser.add_argument('-b', '--bearing', type=self.arg_is_bearing,
                 default='E',
                 help='This compass bearing (N, E, S, or W) specifies '
                 'the direction that is used to proceed initially '
@@ -172,11 +75,11 @@ class CommandLineInterface():
                 'Matrix cells are filled with incrementing integers, by default.')
         integers_group.add_argument('-c', '--center', type=int,
                 default=1,
-                help='This integer value is used to populate the center '
+                help='This integer argument is used to populate the center '
                 'cell that begins the spiral. (default: 1)')
-        integers_group.add_argument('-s', '--step', type=cli.arg_is_not0_int,
+        integers_group.add_argument('-s', '--step', type=self.arg_is_not0_int,
                 default=1,
-                help='This integer value is used to increment the next '
+                help='This integer argument is used to increment the next '
                 'cell\'s value as the spiral progresses from cell to '
                 'cell. (default: 1)')
         group_words = parser.add_argument_group('Word-filled matrix options',
@@ -200,6 +103,97 @@ class CommandLineInterface():
                 'Usage of the \'file\' option is excluded when using '
                 'this option. (default: not used)')
         return parser
+
+    def arg_is_int(self, arg):
+        '''
+        Argument contraint: integer
+        '''
+        msg = '\'%s\' should be an integer' % (str(arg))
+        if arg == None:
+            raise argparse.ArgumentError(None, msg)
+        try:
+            integer = int(arg)
+        except:
+            raise argparse.ArgumentError(None, msg)
+        if not float(arg).is_integer():
+            raise argparse.ArgumentError(None, msg)
+        return integer
+
+    def arg_is_gt0(self, arg):
+        '''
+        Argument contraint: greater-than-zero number
+        '''
+        msg = '\'%s\' should be a number greater-than-zero' % (str(arg))
+        try:
+            float(arg)
+        except:
+            raise argparse.ArgumentError(None, msg)
+        if float(arg) <= 0:
+            raise argparse.ArgumentError(None, msg)
+        return arg
+
+    def arg_is_not0(self, arg):
+        '''
+        Argument contraint: non-zero number
+        '''
+        msg = '\'%s\' should be a non-zero number' % (str(arg))
+        try:
+            float(arg)
+        except:
+            raise argparse.ArgumentError(None, msg)
+        if arg == 0:
+            raise argparse.ArgumentError(None, msg)
+        return arg
+
+    def arg_is_odd_int(self, arg):
+        '''
+        Argument contraint: odd integer
+        '''
+        msg = '\'%s\' should be an odd integer' % (str(arg))
+        try:
+            integer = self.arg_is_int(arg)
+        except:
+            raise argparse.ArgumentError(None, msg)
+        if not integer % 2:
+            raise argparse.ArgumentError(None, msg)
+        return integer
+
+    def arg_is_not0_int(self, arg):
+        '''
+        Argument contraint: non-zero integer
+        '''
+        msg = '\'%s\' should be a non-zero integer' % (str(arg))
+        try:
+            integer = self.arg_is_int(arg)
+            integer = self.arg_is_not0(integer)
+        except:
+            raise argparse.ArgumentError(None, msg)
+        return integer
+
+    def arg_is_gt0_odd_int(self, arg):
+        '''
+        Argument contraint: positive, odd integer
+        '''
+        msg = '\'%s\' should be a positive, odd integer' % (str(arg))
+        try:
+            integer = self.arg_is_odd_int(arg)
+            integer = self.arg_is_gt0(integer)
+        except:
+            raise argparse.ArgumentError(None, msg)
+        return integer
+
+    def arg_is_bearing(self, arg):
+        '''
+        Argument contraint: valid compass bearing as defined by self.caller
+        '''
+        uppercase_arg = str(arg).upper()
+        bearing_list = list(self.caller.compass.keys())
+        # bearing_list = ['E', 'N', 'W', 'S', 'EAST', 'NORTH', 'WEST', 'SOUTH']
+        msg = '\'%s\' should be one of: %s' % (str(arg), bearing_list)
+        msg = 'FFFFFFFF'
+        if not uppercase_arg in bearing_list:
+            raise argparse.ArgumentError(None, msg)
+        return uppercase_arg
 
 ################################################################################
 if __name__ == '__main__':
