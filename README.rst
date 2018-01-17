@@ -9,7 +9,7 @@ is made up of a number of other arrays that are all uniform in size. The
 assembled array-of-arrays that is generated forms a two-dimensional grid
 made up of individual cells.
 
-.. figure:: docs/images/spiral_matrix_5.png
+.. figure:: https://github.com/zero2cx/spiral-matrix/blob/master/docs/images/spiral_matrix_5.png
    :alt: 5x5 spiral matrix
 
    5x5 spiral matrix
@@ -23,7 +23,7 @@ moving from cell to cell, filling each one with an element of the
 series. Ultimately, each cell in the matrix is populated with one
 element of the series.
 
-.. figure:: docs/images/spiral_matrix_5+command_line.png
+.. figure:: https://github.com/zero2cx/spiral-matrix/blob/master/docs/images/spiral_matrix_5+command_line.png
    :alt: 5x5 including command-line
 
    5x5 including command-line
@@ -53,7 +53,7 @@ compass direction or bearing, i.e East, North, West, or South, initiates
 the progression of the spiral. The spiral can progress in either a
 clockwise or counter-clockwise manner.
 
-.. figure:: docs/images/spiral_matrix_7+axes+bearing_south+center1000+step-300.png
+.. figure:: https://github.com/zero2cx/spiral-matrix/blob/master/docs/images/spiral_matrix_7+axes+bearing_south+center1000+step-300.png
    :alt: 7x7 with axes, bearing: south, center: 1000, step: -300
 
    7x7 with axes, bearing: south, center: 1000, step: -300
@@ -118,7 +118,7 @@ combination of words, numbers, punctuation, or whitespace. The text
 elements will be read from a file or stdin, or provided in a string via
 the command-line.
 
-.. figure:: docs/images/spiral_matrix_5+axes+bearing_south+right+file_lorem_ipsum.png
+.. figure:: https://github.com/zero2cx/spiral-matrix/blob/master/docs/images/spiral_matrix_5+axes+bearing_south+right+file_lorem_ipsum.png
    :alt: 5x5 with axes, bearing: south, series: lorem_ipsum
 
    5x5 with axes, bearing: south, series: lorem_ipsum
@@ -145,7 +145,7 @@ of populating the cells with the series of incrementing integers.
         Usage of the 'file' option is excluded when using
         this option. (default: not used)
 
-.. figure:: docs/images/spiral_matrix_9+right+words_stormy_night.png
+.. figure:: https://github.com/zero2cx/spiral-matrix/blob/master/docs/images/spiral_matrix_9+right+words_stormy_night.png
    :alt: 9x9, spiral: right, series: stormy_night
 
    9x9, spiral: right, series: stormy_night
