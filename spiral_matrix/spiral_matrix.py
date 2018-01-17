@@ -69,7 +69,7 @@ class SpiralMatrix():
     }
 
     def __init__(self, dimension=None, bearing='E', turn=False,
-            start=1, step=1, file=None, words=None):
+            start=1, step=1, file=None, words=None, test=False):
         '''
         Generate a new instance of SpiralMatrix.
 
@@ -85,6 +85,7 @@ class SpiralMatrix():
             words     : str : string of space-delimited word tokens
             series    : list : list of elements with which to populate the cells
             width     : int : width of each matrix cell, in character-count
+            test      : bool : only used when instantiated via test case
         '''
         try:
             self.dimension = int(dimension) if int(dimension) else 'invalid'
@@ -106,7 +107,8 @@ class SpiralMatrix():
         except:
             raise AttributeError
         # Build the matrix structure that conforms to the attributes.
-        self._build()
+        if not test:
+            self._build()
 
     def _series(self):
         '''
