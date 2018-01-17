@@ -13,24 +13,33 @@ def readme(filename):
 
 setup(
     name = 'spiral-matrix',
-    version = '0.1.2a1',
+    version = '0.1.2a2',
     packages = find_packages(),
     description = 'Generate a square 2-d matrix with an outward-spiraling '
             'series of elements',
     long_description = readme('README.rst'),
+    entry_points = {
+        'console_scripts': ['spiral-matrix = spiral_matrix.spial_matrix:main'],
+    },
     author = 'David Schenck',
     author_email = 'zero2cx@gmail.com',
     license='GPL3+',
     url = 'https://github.com/zero2cx/spiral-matrix',
-    download_url = 'https://github.com/zero2cx/spiral-matrix/archive/v0.1.2a1.tar.gz',
+    download_url = 'https://github.com/zero2cx/spiral-matrix/archive/v0.1.2a2.tar.gz',
     include_package_data = True,
     python_requires = '>=3',
-    keywords = ['spiral-matrix', '2d-matrix', 'matrix', 'command-line'],
+    keywords = [
+        'spiral-matrix',
+        '2d-matrix',
+        'matrix',
+        'command-line',
+        'console',
+    ],
     classifiers = [
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python :: 3',
         'Operating System :: OS Independent',
         'Environment :: Console',
-        'Development Status :: 3 - Alpha'
+        'Development Status :: 3 - Alpha',
     ],
 )
