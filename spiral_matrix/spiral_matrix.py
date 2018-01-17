@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # encoding: utf-8
 # vim: set ff=unix fenc=utf-8 et ts=4 sts=4 sta sw=4:
-# spiral_matrix.py
-
-# Build a square-shaped matrix with an outward-spiraling series of elements.
-#   Project home: <https://github.com/zero2cx/spiral-matrix>
-#   Copyright (C) 2018 David Schenck
 #
+# spiral_matrix.py
+# Build a square-shaped matrix with an outward-spiraling series of elements.
+#
+# Project home: <https://github.com/zero2cx/spiral-matrix>
+# Copyright (C) 2018 David Schenck
+
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -53,7 +54,7 @@ class SpiralMatrix():
     elements will be read from a file or stdin, or provided in a string via
     the command-line.
     '''
-    '''The four compass-based vectors.'''
+    # The four compass-based vectors.
     N, W, S, E = (-1, 0), (0, -1), (1, 0), (0, 1)
     compass = {
         'E': E, 'EAST': E,
@@ -61,7 +62,7 @@ class SpiralMatrix():
         'W': W, 'WEST': W,
         'S': S, 'SOUTH': S
     }
-    '''Map each compass-based vector to its relative-left and -right vector.'''
+    # Map each compass-based vector to its relative-left and -right vector.
     vector = {
         'left': { E: N, N: W, W: S, S: E },
         'right': { E: S, S: W, W: N, N: E }
@@ -72,7 +73,7 @@ class SpiralMatrix():
         '''
         Generate a new instance of SpiralMatrix.
 
-        Description of instance attributes:
+        Brief description of attributes:
             dimension : int : row- or column-count of the squared-shaped matrix
             origin    : y,x : grid coordinates of the center cell
             bearing   : E/N/W/S : initial compass bearing relative to the origin
@@ -104,7 +105,7 @@ class SpiralMatrix():
             self.width = self._width()
         except:
             raise AttributeError
-        '''Build the matrix structure that conforms to the attributes.'''
+        # Build the matrix structure that conforms to the attributes.
         self._build()
 
     def _series(self):
@@ -218,12 +219,12 @@ class SpiralMatrix():
         turn = self.turn
         index = 0
         max = self.max
-        '''Generate an empty list-of-lists, populate the cells with 'None'.'''
+        # Generate an empty list-of-lists, populate the cells with 'None'.
         self.matrix = []
         for i in range(dimension):
             self.matrix.append([None] * dimension)
-        '''Start in the origin cell and spiral outward, populating each cell
-        with the next element of series as the spiral progresses.'''
+        # Start in the origin cell and spiral outward.
+        # Populate each cell with the next element of series.
         index = self._fill(cell, index)                         # fill
         cell = self._move(cell, bearing)                        # move
         while index < max:
@@ -237,13 +238,14 @@ class SpiralMatrix():
         '''
         Print the 2-d matrix structure.
         '''
-        '''If needed, print column-labels.'''
+        # Print column-labels across the top, if needed.
         if axes:
             print('    ', end='')
             for n in range(self.dimension):
                 print('%*s ' % (self.width, n), end='')
             print()
-        '''Print the matrix structure. If needed, prefix row-labels.'''
+        # Print the matrix structure.
+        # Prefix a row-label before each row, if needed.
         for i in range(self.dimension):
             if axes:
                 print('%2s  ' % (i), end='')
@@ -258,12 +260,13 @@ def main():
     '''
     from sys import stdin
     from command_line import CommandLineInterface
-    '''Parse command-line arguments and stdin. Print usage help, if needed.'''
+    # Parse command-line arguments and stdin.
+    # Print usage help, if needed.
     cli = CommandLineInterface(SpiralMatrix)
     args = cli.parser.parse_args()
     if args.words == None:
         args.words = stdin.read()
-    '''Build and print the spiral matrix using the parsed command-line args.'''
+    # Build and print the spiral matrix using the parsed command-line args.
     try:
         m = SpiralMatrix(dimension=args.DIMENSION, bearing=args.bearing,
                 turn=args.right, start=args.center, step=args.step,

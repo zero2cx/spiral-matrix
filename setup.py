@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 # vim: set ff=unix fenc=utf-8 et ts=4 sts=4 sta sw=4:
+#
 # setup.py
 
 import os

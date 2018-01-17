@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # encoding: utf-8
 # vim: set ff=unix fenc=utf-8 et ts=4 sts=4 sta sw=4:
-# command_line.py
-
-# Configure the command-line interface for the spiral_matrix module.
-#   Project home: <https://github.com/zero2cx/spiral-matrix>
-#   Copyright (C) 2018 David Schenck
 #
+# command_line.py
+# Configure the command-line interface for the spiral_matrix module.
+#
+# Project home: <https://github.com/zero2cx/spiral-matrix>
+# Copyright (C) 2018 David Schenck
+
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -21,10 +22,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import argparse
-
-################################################################################
-class ArgumentError(Exception):
-    pass
 
 ################################################################################
 class CommandLineInterface():
@@ -188,7 +185,6 @@ class CommandLineInterface():
         '''
         uppercase_arg = str(arg).upper()
         bearing_list = list(self.caller.compass.keys())
-        # bearing_list = ['E', 'N', 'W', 'S', 'EAST', 'NORTH', 'WEST', 'SOUTH']
         msg = '\'%s\' should be one of: %s' % (str(arg), bearing_list)
         if not uppercase_arg in bearing_list:
             raise argparse.ArgumentError(None, msg)
