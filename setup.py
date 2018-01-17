@@ -1,12 +1,13 @@
 #!/usr/bin/env python
-# vim: set fileencoding=utf-8 :
+# encoding: utf-8
+# vim: set ff=unix fenc=utf-8 et ts=4 sts=4 sta sw=4:
 # setup.py
 
-from os import path
+import os
 from setuptools import setup, find_packages
 
 def readme(filename):
-    with open(path.join(path.dirname(__file__), filename)) as file:
+    with open(os.path.join(os.path.dirname(__file__), filename)) as file:
         README = file.read()
     return README
 
