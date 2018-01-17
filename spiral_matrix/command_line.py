@@ -190,7 +190,6 @@ class CommandLineInterface():
         bearing_list = list(self.caller.compass.keys())
         # bearing_list = ['E', 'N', 'W', 'S', 'EAST', 'NORTH', 'WEST', 'SOUTH']
         msg = '\'%s\' should be one of: %s' % (str(arg), bearing_list)
-        msg = 'FFFFFFFF'
         if not uppercase_arg in bearing_list:
             raise argparse.ArgumentError(None, msg)
         return uppercase_arg
