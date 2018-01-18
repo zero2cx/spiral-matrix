@@ -17,6 +17,8 @@ class SpiralMatrixInstantiationTestCase(unittest.TestCase):
             with self.subTest(config=config):
                 m = SpiralMatrix(config)
                 self.assertIsInstance(m, SpiralMatrix)
+                self.assertEqual(m.dimension, int(config))
+                self.assertEqual(m.max, int(config) * int(config))
 
         fail_configs = [-3, 0, 2.3, 1.21e-1, 'foo', '', None]
         for config in fail_configs:
@@ -43,12 +45,14 @@ class SpiralMatrixInstantiationTestCase(unittest.TestCase):
         ]
         for config in pass_configs:
             with self.subTest(config=config):
-                dimension, turn, bearing, start, step, file, words, \
+                dimension, bearing, right, start, step, file, words, \
                         want_matrix = config.values()
-                m = SpiralMatrix(dimension, turn, bearing, start, step, file, \
-                        words)
+                m = SpiralMatrix(dimension, bearing, right, start, step, \
+                        file, words, test=True)
+                m._build()
                 self.assertEqual(m.matrix, want_matrix)
 
+################################################################################
 class SpiralMatrixMethodsTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -214,15 +218,15 @@ class SpiralMatrixMethodsTestCase(unittest.TestCase):
 
         pass_configs = [
             { 'cell': (1, 1), 'bearing': m.N,
-              'want_cell': (0, 1) },
+              'want_coords': (0, 1) },
             { 'cell': (0, 2), 'bearing': m.S,
-              'want_cell': (1, 2) },
+              'want_coords': (1, 2) },
         ]
         for config in pass_configs:
             with self.subTest(config=config):
-                cell, bearing, want_cell = config.values()
-                new_cell = m._move(cell, bearing)
-                self.assertEqual(new_cell, want_cell)
+                cell, bearing, want_coords = config.values()
+                y, x = m._move(cell, bearing)
+                self.assertEqual((y, x), want_coords)
 
 ################################################################################
 if __name__ == '__main__':
