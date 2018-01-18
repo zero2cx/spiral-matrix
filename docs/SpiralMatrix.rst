@@ -405,7 +405,7 @@ Usage example:
 
 --------------
 
-pypi: https://testpypi.python.org/pypi/spiral-matrix
+pypi: https://pypi.python.org/pypi/spiral-matrix
 
 code repo: https://github.com/zero2cx/spiral-matrix
 
