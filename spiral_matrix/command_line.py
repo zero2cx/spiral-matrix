@@ -27,6 +27,7 @@ import argparse
 class CommandLineInterface():
 
     def __init__(self, caller):
+
         self.caller = caller
         self.parser = self.configure_parser()
 
@@ -39,56 +40,77 @@ class CommandLineInterface():
         '''
         parser = argparse.ArgumentParser(description=self.caller.__doc__,
                 formatter_class=argparse.RawDescriptionHelpFormatter)
+
+        # arg: DIMENSION
         parser.add_argument('DIMENSION', type=self.arg_is_gt0_odd_int,
                 help='This is an integer argument, and is limited '
                 'to odd numbers only. This count of rows and columns '
                 'constitute the constructed size of the the square-'
                 'shaped 2-d matrix. (REQUIRED)')
+
+        # arg: axes
         parser.add_argument('-a', '--axes', action='store_true',
                 default=False,
                 help='This parameter-less option enables or disables the '
                 'prefixing of column- and row-axes labels along the '
                 'top- and left-side of the printed output. '
                 '(default: False)')
+
+        # arg: bearing
         parser.add_argument('-b', '--bearing', type=self.arg_is_bearing,
                 default='E',
                 help='This compass bearing (N, E, S, or W) specifies '
                 'the direction that is used to proceed initially '
                 'outward from the center of the matrix. '
                 '(default: E)')
+
         spiral_group = parser.add_mutually_exclusive_group()
+
+        # arg: right
         spiral_group.add_argument('-r', '--right', action='store_true',
                 default=False,
                 help='This parameter-less option generates a spiral '
                 'which progresses in a clockwise manner. Not for use '
                 'with \'left\'. (default: not used)')
+
+        # arg: left
         spiral_group.add_argument('-l', '--left', action='store_true',
                 default=True,
                 help='This parameter-less option generates a spiral '
                 'which progresses in a counter-clockwise manner, '
                 'which is the default spiral direction. Not for use '
                 'with \'right\'. Included for completeness.')
+
         integers_group = parser.add_argument_group('Integer-filled matrix options',
                 'Matrix cells are filled with incrementing integers, by default.')
+
+        # arg: center
         integers_group.add_argument('-c', '--center', type=int,
                 default=1,
                 help='This integer argument is used to populate the center '
                 'cell that begins the spiral. (default: 1)')
+
+        # arg: step
         integers_group.add_argument('-s', '--step', type=self.arg_is_not0_int,
                 default=1,
                 help='This integer argument is used to increment the next '
                 'cell\'s value as the spiral progresses from cell to '
                 'cell. (default: 1)')
+
         group_words = parser.add_argument_group('Word-filled matrix options',
                 'Alternatively, matrix cells can be populated with supplied text '
                 'elements.')
         words_group = group_words.add_mutually_exclusive_group()
+
+        # arg: file
         words_group.add_argument('-f', '--file', type=open,
                 help='The specified file should contain some amount of '
                 'whitespace-delimited text elements. The cells of '
                 'the matrix are then populated using these elements. '
                 'Usage of the \'words\' option is excluded when using '
                 'this option. (default: not used)')
+
+        # arg: words
         words_group.add_argument('-w', '--words', type=str, nargs='?',
                 default=False,
                 help='This string of whitespace-delimited text elements '
@@ -99,6 +121,7 @@ class CommandLineInterface():
                 'to be the last option provided on the command-line. '
                 'Usage of the \'file\' option is excluded when using '
                 'this option. (default: not used)')
+
         return parser
 
     def arg_is_int(self, arg):
