@@ -1,7 +1,5 @@
-include README.*
+include README.rst
 include LICENSE.txt
-include MANIFEST.in
 recursive-include docs *
 recursive-include bin *
-recursive-include tests *
 global-exclude __pycache__ *.py[cod]
