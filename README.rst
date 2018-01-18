@@ -145,6 +145,7 @@ integers.
         to be the last option provided on the command-line.
         Usage of the 'file' option is excluded when using
         this option. (default: not used)
+
 |
 
 .. figure:: https://github.com/zero2cx/spiral-matrix/raw/master/docs/images/spiral_matrix_9+right+words_stormy_night.png
