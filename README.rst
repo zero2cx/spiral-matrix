@@ -145,25 +145,23 @@ of populating the cells with the series of incrementing integers.
         Usage of the 'file' option is excluded when using
         this option. (default: not used)
 
+
 .. figure:: https://github.com/zero2cx/spiral-matrix/raw/master/docs/images/spiral_matrix_9+right+words_stormy_night.png
    :alt: 9x9, spiral: right, series: stormy_night
 
    9x9, spiral: right, series: stormy_night
 
-pypi: https://testpypi.python.org/pypi?name=spiral-matrix&version=0.1.2a3&:action=display
+--------------
 
+pypi: https://testpypi.python.org/pypi/spiral-matrix
 
 code repo: https://github.com/zero2cx/spiral-matrix
 
-
 license: GPL3+
-
 
 document version: 1.0
 
-
-modified: 01/13/2018
-
+modified: 01/17/2018
 
 author: David Schenck
 
