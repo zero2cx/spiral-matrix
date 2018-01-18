@@ -7,18 +7,18 @@
 import os
 from setuptools import setup, find_packages
 
-def readme(filename):
+def read(filename):
     with open(os.path.join(os.path.dirname(__file__), filename)) as file:
-        README = file.read()
-    return README
+        readme = file.read()
+    return readme
 
 setup(
     name = 'spiral-matrix',
-    version = '0.1.2a4',
+    version = '0.1.2a5',
     packages = find_packages(),
     description = 'Generate a square 2-d matrix with an outward-spiraling '
             'series of elements',
-    long_description = readme('README.rst'),
+    long_description = read('README.rst'),
     entry_points = {
         'console_scripts': ['spiral-matrix = spiral_matrix.spiral_matrix:main'],
     },
@@ -26,7 +26,7 @@ setup(
     author_email = 'zero2cx@gmail.com',
     license='GPL3+',
     url = 'https://github.com/zero2cx/spiral-matrix',
-    download_url = 'https://github.com/zero2cx/spiral-matrix/archive/v0.1.2a4.tar.gz',
+    # download_url = 'https://github.com/zero2cx/spiral-matrix/archive/v0.1.2a5.tar.gz',
     include_package_data = True,
     python_requires = '>=3',
     keywords = [
