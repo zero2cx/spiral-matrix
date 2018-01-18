@@ -147,6 +147,7 @@ integers.
         this option. (default: not used)
 
 |
+
 .. figure:: https://github.com/zero2cx/spiral-matrix/raw/master/docs/images/spiral_matrix_9+right+words_stormy_night.png
    :alt: 9x9, spiral: right, series: stormy_night
 
