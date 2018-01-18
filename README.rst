@@ -146,11 +146,7 @@ integers.
         Usage of the 'file' option is excluded when using
         this option. (default: not used)
 
-<<<<<<< HEAD
 |
-=======
-::
->>>>>>> c43057c2694815dbd90a48827bd7a08e30a451dd
 
 .. figure:: https://github.com/zero2cx/spiral-matrix/raw/master/docs/images/spiral_matrix_9+right+words_stormy_night.png
    :alt: 9x9, spiral: right, series: stormy_night
