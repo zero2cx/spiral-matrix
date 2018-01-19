@@ -123,7 +123,8 @@ class CommandLineInterface():
         # arg: file
         alternative_subgroup.add_argument(
                 '-f', '--file',
-                type=open,
+                # type=open,
+                type=self.arg_is_text_file,
                 help='The specified file should contain some amount of '
                 'whitespace-delimited text elements. The cells of '
                 'the matrix are then populated using these elements. '
@@ -218,6 +219,22 @@ class CommandLineInterface():
             raise argparse.ArgumentTypeError(msg)
 
         return uppercase_arg
+
+    def arg_is_text_file(self, arg):
+        '''
+        Argument contraint: text file
+        '''
+
+        msg = f'{arg} should be a text file'
+
+        try:
+            with open(arg) as file:
+                file.read()
+                # return file
+        except UnicodeDecodeError:
+            raise argparse.ArgumentTypeError(msg)
+
+        return arg
 
 ################################################################################
 if __name__ == '__main__':

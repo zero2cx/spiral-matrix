@@ -142,16 +142,22 @@ class SpiralMatrix():
         Return the series list.
         '''
 
-        file = self.file
+        filename = self.file
         max = self.max
 
-        ### TODO: use the try-except here to catch an empty file or binary file
+        # Read the file if type text file, or raise error if type binary file
         try:
-            series = file.read()
+            with open(filename) as file:
+                series = file.read()
+        except UnicodeDecodeError:
+            raise AttributeError(f'** ERROR: "{filename}" must be a text file')
+
+        # Parse the file content, or raise error if file has no content
+        try:
             series = series.split()
             series = (series * (int(max / len(series)) + 1))[:max]
         except:
-            raise AttributeError
+            raise AttributeError(f'** ERROR: "{filename}" is an empty file')
 
         return series
 
