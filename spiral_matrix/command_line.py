@@ -147,64 +147,6 @@ class CommandLineInterface():
 
         return parser
 
-    def arg_is_int(self, arg):
-        '''
-        Argument contraint: integer
-        '''
-        msg = f'"{arg}" should be an integer'
-
-        # test: since False can be coerced to 0 (but isn't 0), is arg False?
-        if arg == False:
-            raise argparse.ArgumentTypeError(msg)
-
-        # test: can arg be coerced to type int?
-        try:
-            int(arg)
-        except:
-            raise argparse.ArgumentTypeError(msg)
-
-        # test: is arg a valid integer after it's been coerced to type float?
-        if not float(arg).is_integer():
-            raise argparse.ArgumentTypeError(msg)
-
-        return arg
-
-    def arg_is_gt0(self, arg):
-        '''
-        Argument contraint: positive number
-        '''
-        msg = f'"{arg}" should be a positive number'
-
-        # test: is arg a number?
-        try:
-            float(arg)
-        except:
-            raise argparse.ArgumentTypeError(msg)
-
-        # test: is arg greater than 0?
-        if float(arg) <= 0:
-            raise argparse.ArgumentTypeError(msg)
-
-        return arg
-
-    def arg_is_not0(self, arg):
-        '''
-        Argument contraint: non-zero number
-        '''
-        msg = f'"{arg}" should be a non-zero number'
-
-        # test: is arg a number?
-        try:
-            float(arg)
-        except:
-            raise argparse.ArgumentTypeError(msg)
-
-        # test: is arg equal to 0?
-        if float(arg) == 0:
-            raise argparse.ArgumentTypeError(msg)
-
-        return arg
-
     def arg_is_odd_int(self, arg):
         '''
         Argument contraint: odd integer
