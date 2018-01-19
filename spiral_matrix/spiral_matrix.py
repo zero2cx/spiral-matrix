@@ -99,8 +99,8 @@ class SpiralMatrix():
             self.bearing = self.compass[bearing]
             self.turn = 'right' if turn else 'left'
             self.max = self.dimension ** 2
-            self.start = start
-            self.step = step
+            self.start = int(start)
+            self.step = int(step)
             self.file = file
             self.words = words
             if self.file:
@@ -129,8 +129,7 @@ class SpiralMatrix():
         max = self.max
 
         try:
-            ### TODO: tweak the clumsy end-of-range expression below
-            series = range(start, (max + abs(start)) * step, step)[:max]
+            series = range(start, start + max * step, step)[:max]
         except IndexError:
             raise AttributeError
 
@@ -302,7 +301,7 @@ def main():
     args = cli.parser.parse_args()
     if args.words == None:
         args.words = stdin.read()
-        
+
     # Build and print the spiral matrix using the parsed command-line args.
     try:
         m = SpiralMatrix(dimension=args.DIMENSION, bearing=args.bearing,
