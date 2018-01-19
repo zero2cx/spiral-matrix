@@ -171,9 +171,9 @@ class CommandLineInterface():
 
     def arg_is_gt0(self, arg):
         '''
-        Argument contraint: greater-than-zero number
+        Argument contraint: positive number
         '''
-        msg = f'"{arg}" should be a number greater-than-zero'
+        msg = f'"{arg}" should be a positive number'
 
         # test: is arg a number?
         try:
