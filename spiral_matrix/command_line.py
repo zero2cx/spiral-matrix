@@ -151,43 +151,43 @@ class CommandLineInterface():
         '''
         Argument contraint: integer
         '''
-        msg = '\'%s\' should be an integer' % (str(arg))
+        msg = f'"{arg}" should be an integer'
 
         # test: None is not an integer
         if arg == None:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
         # test: since False can be coerced to 0 (but isn't 0), is arg False?
         if arg == False:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
         # test: can arg be coerced to type int?
         try:
             int(arg)
         except:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
-        # test: is arg a valid integer value after it's coerced to type float?
+        # test: is arg a valid integer after it's been coerced to type float?
         if not float(arg).is_integer():
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
-        return int(integer)
+        return arg
 
     def arg_is_gt0(self, arg):
         '''
         Argument contraint: greater-than-zero number
         '''
-        msg = '\'%s\' should be a number greater-than-zero' % (str(arg))
+        msg = f'"{arg}" should be a number greater-than-zero'
 
-        # test: is arg a numeric value?
+        # test: is arg a number?
         try:
             float(arg)
         except:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
         # test: is arg greater than 0?
         if float(arg) <= 0:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
         return arg
 
@@ -195,17 +195,17 @@ class CommandLineInterface():
         '''
         Argument contraint: non-zero number
         '''
-        msg = '\'%s\' should be a non-zero number' % (str(arg))
+        msg = f'"{arg}" should be a non-zero number'
 
-        # test: is arg a numeric value?
+        # test: is arg a number?
         try:
             float(arg)
         except:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
         # test: is arg equal to 0?
-        if arg == 0:
-            raise argparse.ArgumentError(None, msg)
+        if float(arg) == 0:
+            raise argparse.ArgumentTypeError(msg)
 
         return arg
 
@@ -213,71 +213,71 @@ class CommandLineInterface():
         '''
         Argument contraint: odd integer
         '''
-        msg = '\'%s\' should be an odd integer' % (str(arg))
+        msg = f'"{arg}" should be an odd integer'
 
         # test: is arg an integer?
         try:
-            integer = self.arg_is_int(arg)
+            int(arg)
         except:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
         # test: is arg evenly divisible by 2?
-        if not integer % 2:
-            raise argparse.ArgumentError(None, msg)
+        if not int(arg) % 2:
+            raise argparse.ArgumentTypeError(msg)
 
-        return integer
+        return arg
 
     def arg_is_not0_int(self, arg):
         '''
         Argument contraint: non-zero integer
         '''
-        msg = '\'%s\' should be a non-zero integer' % (str(arg))
+        msg = f'"{arg}" should be a non-zero integer'
 
         # test: is arg an integer?
         try:
-            integer = self.arg_is_int(arg)
+            int(arg)
         except:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
         # test: is arg equal to 0?
-        try:
-            integer = self.arg_is_not0(integer)
-        except:
-            raise argparse.ArgumentError(None, msg)
+        if int(arg) == 0:
+            raise argparse.ArgumentTypeError(msg)
 
-        return integer
+        return arg
 
     def arg_is_gt0_odd_int(self, arg):
         '''
         Argument contraint: positive, odd integer
         '''
-        msg = '\'%s\' should be a positive, odd integer' % (str(arg))
+        msg = f'"{arg}" should be a positive, odd integer'
 
-        # test: is arg an odd integer?
+        # test: is arg an integer?
         try:
-            integer = self.arg_is_odd_int(arg)
+            int(arg)
         except:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
+
+        # test: is arg evenly divisible by 2?
+        if not int(arg) % 2:
+            raise argparse.ArgumentTypeError(msg)
 
         # test: is arg greater than 0?
-        try:
-            integer = self.arg_is_gt0(integer)
-        except:
-            raise argparse.ArgumentError(None, msg)
+        if int(arg) <= 0:
+            raise argparse.ArgumentTypeError(msg)
 
-        return integer
+        return arg
 
     def arg_is_bearing(self, arg):
         '''
         Argument contraint: valid compass bearing as defined by self.caller
         '''
         bearing_list = list(self.caller.compass.keys())
-        msg = '\'%s\' should be one of: %s' % (str(arg), bearing_list)
+        msg = f'"{arg}" should be one of: {bearing_list}'
         uppercase_arg = str(arg).upper()
 
         # test: is arg a member of bearing_list?
         if not uppercase_arg in bearing_list:
-            raise argparse.ArgumentError(None, msg)
+            raise argparse.ArgumentTypeError(msg)
 
         return uppercase_arg
 
