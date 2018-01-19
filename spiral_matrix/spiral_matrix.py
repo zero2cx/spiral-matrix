@@ -213,6 +213,15 @@ class SpiralMatrix():
         '''
 
         vector = self.vector[look][bearing]
+<<<<<<< HEAD
+=======
+        y, x = [sum(coords) for coords in zip(location, vector)]
+
+        # try:
+        self.matrix[y][x]
+        # except IndexError:
+        #     raise AttributeError
+>>>>>>> e4411326109f1f4a70b0533ff2ad404aba36aaa5
 
         return [sum(coords) for coords in zip(location, vector)]
 
