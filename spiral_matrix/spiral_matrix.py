@@ -201,10 +201,7 @@ class SpiralMatrix():
 
         y, x = coords
 
-        try:
-            self.matrix[y][x] = self.series[index]
-        except IndexError:
-            return index + 1
+        self.matrix[y][x] = self.series[index]
 
         return index + 1
 
@@ -216,14 +213,8 @@ class SpiralMatrix():
         '''
 
         vector = self.vector[look][bearing]
-        y, x = [sum(coords) for coords in zip(location, vector)]
 
-        try:
-            self.matrix[y][x]
-        except IndexError:
-            raise AttributeError
-
-        return y, x
+        return [sum(coords) for coords in zip(location, vector)]
 
     def _turn(self, turn, bearing):
         '''
