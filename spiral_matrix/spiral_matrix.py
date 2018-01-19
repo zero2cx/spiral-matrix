@@ -57,6 +57,7 @@ class SpiralMatrix():
     or whitespace. The token string can be read from a file or stdin,
     or provided via command-line parameter.
     '''
+
     # The four compass-based vectors.
     N, W, S, E = (-1, 0), (0, -1), (1, 0), (0, 1)
     compass = {
@@ -65,6 +66,7 @@ class SpiralMatrix():
         'W': W, 'WEST': W,
         'S': S, 'SOUTH': S
     }
+
     # Map each compass-based vector to its relative-left and -right vector.
     vector = {
         'left': { E: N, N: W, W: S, S: E },
@@ -90,6 +92,7 @@ class SpiralMatrix():
             width     : int : width of each matrix cell, in character-count
             test      : bool : only used when instantiated via test case
         '''
+
         try:
             self.dimension = int(dimension) if int(dimension) else 'invalid'
             self.origin = (int(self.dimension // 2), int(self.dimension // 2))
@@ -109,6 +112,7 @@ class SpiralMatrix():
             self.width = self._width()
         except:
             raise AttributeError
+
         # Build the matrix structure that conforms to the attributes.
         if not test:
             self._build()
@@ -119,14 +123,17 @@ class SpiralMatrix():
 
         Return the series list.
         '''
+
         start = self.start
         step = self.step
         max = self.max
+
         try:
             ### TODO: tweak the clumsy end-of-range expression below
             series = range(start, (max + abs(start)) * step, step)[:max]
         except IndexError:
             raise AttributeError
+
         return series
 
     def _series_from_file(self):
@@ -135,8 +142,10 @@ class SpiralMatrix():
 
         Return the series list.
         '''
+
         file = self.file
         max = self.max
+
         ### TODO: use the try-except here to catch an empty file or binary file
         try:
             series = file.read()
@@ -144,6 +153,7 @@ class SpiralMatrix():
             series = (series * (int(max / len(series)) + 1))[:max]
         except:
             raise AttributeError
+
         return series
 
     def _series_from_string(self):
@@ -152,10 +162,13 @@ class SpiralMatrix():
 
         Return the series list.
         '''
+
         words = self.words
         max = self.max
+
         series = words.split()
         series = (series * (int(max / len(series)) + 1))[:max]
+
         return series
 
     def _width(self):
@@ -164,11 +177,14 @@ class SpiralMatrix():
 
         Return the width integer.
         '''
+
         series = self.series
+
         width = 0
         for i in range(len(series)):
             if len(str(series[i])) > width:
                 width = len(str(series[i]))
+
         return width
 
     def _fill(self, coords, index):
@@ -177,11 +193,14 @@ class SpiralMatrix():
 
         Increment the series index integer and return that index.
         '''
+
         y, x = coords
+
         try:
             self.matrix[y][x] = self.series[index]
         except IndexError:
             return index + 1
+
         return index + 1
 
     def _look(self, location, look, bearing):
@@ -190,12 +209,15 @@ class SpiralMatrix():
 
         Return the cell coordinates tuple.
         '''
+
         vector = self.vector[look][bearing]
         y, x = [sum(coords) for coords in zip(location, vector)]
+
         try:
             self.matrix[y][x]
         except IndexError:
             raise AttributeError
+
         return y, x
 
     def _turn(self, turn, bearing):
@@ -204,6 +226,7 @@ class SpiralMatrix():
 
         Return the compass bearing of the new direction.
         '''
+
         return self.vector[turn][bearing]
 
     def _move(self, cell, bearing):
@@ -212,22 +235,26 @@ class SpiralMatrix():
 
         Return coordinates tuple for the new current cell.
         '''
+
         return tuple([sum(coords) for coords in zip(cell, bearing)])
 
     def _build(self):
         '''
         Generate the spiral matrix, populating it with elements of series.
         '''
+
         dimension = self.dimension
         cell = self.origin
         bearing = self.bearing
         turn = self.turn
         index = 0
         max = self.max
+
         # Generate an empty list-of-lists, populate the cells with 'None'.
         self.matrix = []
         for i in range(dimension):
             self.matrix.append([None] * dimension)
+
         # Start in the origin cell and spiral outward.
         # Populate each cell with the next element of series.
         index = self._fill(cell, index)                         # fill
@@ -243,12 +270,14 @@ class SpiralMatrix():
         '''
         Print the 2-d matrix structure.
         '''
+
         # Print column-labels across the top, if needed.
         if axes:
             print('    ', end='')
             for n in range(self.dimension):
                 print('%*s ' % (self.width, n), end='')
             print()
+
         # Print the matrix structure.
         # Prefix a row-label before each row, if needed.
         for i in range(self.dimension):
@@ -263,14 +292,17 @@ def main():
     '''
     Handle the case where this module is launched from the command-line.
     '''
+
     from sys import stdin
     from command_line import CommandLineInterface
+
     # Parse command-line arguments and stdin.
     # Print usage help, if needed.
     cli = CommandLineInterface(SpiralMatrix)
     args = cli.parser.parse_args()
     if args.words == None:
         args.words = stdin.read()
+        
     # Build and print the spiral matrix using the parsed command-line args.
     try:
         m = SpiralMatrix(dimension=args.DIMENSION, bearing=args.bearing,
