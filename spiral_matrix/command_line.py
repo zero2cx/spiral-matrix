@@ -153,10 +153,6 @@ class CommandLineInterface():
         '''
         msg = f'"{arg}" should be an integer'
 
-        # test: None is not an integer
-        if arg == None:
-            raise argparse.ArgumentTypeError(msg)
-
         # test: since False can be coerced to 0 (but isn't 0), is arg False?
         if arg == False:
             raise argparse.ArgumentTypeError(msg)
