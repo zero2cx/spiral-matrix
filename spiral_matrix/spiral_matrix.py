@@ -26,33 +26,36 @@ class SpiralMatrix():
     '''
     Generate a square 2-d matrix with an outward-spiraling series of elements.
 
-    A spiral matrix is a particular type of squared-shaped matrix where each
-    cell is populated with a progression of elements of a series. The spiral in
-    the name refers to the condition that the cells are filled using a pattern
-    that conforms to a tightly-wound spiral. The spiral progression begins in
-    the center cell. From there, the progression spirals outward moving from
-    cell to cell, filling each one with an element of the series. Ultimately,
-    each cell in the matrix is populated with one element of the series.
+    A spiral matrix is a particular type of squared-shaped matrix where
+    each cell is populated with one value from a series, or predefined
+    list of values. The 'spiral' in 'spiral matrix' refers to the rule
+    that all cells are to be populated with values from the series using
+    a pattern that conforms to a tightly-wound spiral. This spiral
+    progression begins from the center cell, moving outward, populating
+    cells with elements from the series. Ultimately, each cell in the
+    matrix is populated with one element from the series.
 
-    Column and row axis-labels along the top- and left-side can be prefixed to
-    the printed output. Proceeding outward from the center cell in one compass
-    direction or bearing, i.e East, North, West, or South, initiates the
-    progression of the spiral. The spiral can progress in either a clockwise or
-    counter-clockwise manner.
+    Column and row axis-labels along the top- and left-side can be
+    prefixed to the printed output. Proceeding outward from the center
+    cell in one compass direction or bearing, i.e East, North, West, or
+    South, initiates the progression of the spiral. The spiral can be
+    configured to progress in either a clockwise or counter-clockwise
+    manner.
 
     The default style for the generated matrix consists of the series of
-    integers that begin with 1 and then increments by 1 for each member of the
-    series. Either of these integer values may be modified in order to change
-    the generated matrix's cell contents. Any positive or negative integer, or
-    zero, is acceptable to occupy the center cell that begins the spiral. The
-    increment integer must be a positive or negative, non-zero integer.
+    integers that begin with '1' and then increments by '1' for each
+    element of the series. Either of these integer values may be modified
+    in order to change the generated matrix’s cell contents. Any positive
+    or negative integer, or zero, is acceptable to occupy the center cell
+    that starts the spiral. The increment integer must be a positive or
+    negative, non-zero integer.
 
-    As an alternative to the population of the cells of the matrix with the
-    series of incrementing integers, a string of whitespace-delimited text
-    elements can be supplied. This string of elements might consist of any
-    combination of words, numbers, punctuation, or whitespace. The text
-    elements will be read from a file or stdin, or provided in a string via
-    the command-line.
+    As an alternative to populating the cells with a series of
+    incrementing integers, a string of whitespace-delimited text
+    elements, or word tokens, can be supplied. This string of tokens
+    might consist of any combination of words, numbers, punctuation,
+    or whitespace. The token string can be read from a file or stdin,
+    or provided via command-line parameter.
     '''
     # The four compass-based vectors.
     N, W, S, E = (-1, 0), (0, -1), (1, 0), (0, 1)
