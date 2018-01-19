@@ -27,13 +27,13 @@ class SpiralMatrix():
     Generate a square 2-d matrix with an outward-spiraling series of elements.
 
     A spiral matrix is a particular type of squared-shaped matrix where
-    each cell is populated with one value from a series, or predefined
-    list of values. The 'spiral' in 'spiral matrix' refers to the rule
-    that all cells are to be populated with values from the series using
-    a pattern that conforms to a tightly-wound spiral. This spiral
-    progression begins from the center cell, moving outward, populating
-    cells with elements from the series. Ultimately, each cell in the
-    matrix is populated with one element from the series.
+    each cell is populated with one value from a defined _'series'_, i.e.
+    list of value elements. The _'spiral'_ in 'spiral matrix' refers to
+    the rule that all cells are to be populated with values from the
+    series using a pattern that conforms to a tightly-wound spiral. This
+    spiral progression begins from the center cell, moving outward, while
+    populating cells with elements from the series. Ultimately, each cell
+    in the matrix is populated with one element from the series.
 
     Column and row axis-labels along the top- and left-side can be
     prefixed to the printed output. Proceeding outward from the center
@@ -74,7 +74,7 @@ class SpiralMatrix():
     }
 
     def __init__(self, dimension=None, bearing='E', turn=False,
-            start=1, step=1, file=None, words=None, test=False):
+            start=1, step=1, filename=None, words=None, test=False):
         '''
         Generate a new instance of SpiralMatrix.
 
@@ -93,86 +93,162 @@ class SpiralMatrix():
             test      : bool : only used when instantiated via test case
         '''
 
-        try:
-            self.dimension = int(dimension) if int(dimension) else 'invalid'
-            self.origin = (int(self.dimension // 2), int(self.dimension // 2))
-            self.bearing = self.compass[bearing]
-            self.turn = 'right' if turn else 'left'
-            self.max = self.dimension ** 2
-            self.start = int(start)
-            self.step = int(step)
-            self.file = file
-            self.words = words
-            if self.file:
-                self.series = self._series_from_file()
-            elif self.words:
-                self.series = self._series_from_string()
-            else:
-                self.series = self._series()
-            self.width = self._width()
-        except:
-            raise AttributeError
+        # Assign attributes from arguments.
+        self.dimension = self._dimension(dimension)
+        self.origin = (self.dimension // 2, self.dimension // 2)
+        self.max = self.dimension ** 2
+        self.bearing = self._bearing(bearing)
+        self.turn = 'right' if turn else 'left'
+        self.series = self._series(
+                filename, words, self._start(start), self._step(step))
+        self.width = self._width()
 
         # Build the matrix structure that conforms to the attributes.
         if not test:
             self._build()
 
-    def _series(self):
+    def _dimension(self, dimension):
         '''
-        Populate series with integer values to fill the matrix cells.
+        Raise exception, if dimension is not an odd, positive integer.
 
-        Return the series list.
+        Return dimension as type int().
         '''
 
-        start = self.start
-        step = self.step
-        max = self.max
+        msg = f'not an odd, positive integer: "{dimension}"'
 
         try:
-            series = range(start, start + max * step, step)[:max]
-        except IndexError:
-            raise AttributeError
+            dimension = int(dimension)
+        except ValueError:
+            raise AttributeError(msg)
 
-        return series
+        if not dimension > 0:
+            raise AttributeError(msg)
 
-    def _series_from_file(self):
+        if not dimension % 2:
+            raise AttributeError(msg)
+
+        return dimension
+
+    def _bearing(self, bearing):
         '''
-        Populate series using content of a local file to fill the matrix cells.
+        Raise exception, if bearing is not a key in the class compass dict().
 
+        Return bearing as a 2-tuple of relative-to-position grid coordinates.
+        '''
+
+        msg = f'not a compass bearing: "{bearing}"'
+
+        try:
+            bearing = self.compass[bearing]
+        except KeyError:
+            raise AttributeError(msg)
+
+        return bearing
+
+    def _start(self, start):
+        '''
+        Raise exception, if start is not an integer.
+
+        Return start as type int().
+        '''
+
+        msg = f'not an integer: "{start}"'
+
+        try:
+            start = int(start)
+        except ValueError:
+            raise AttributeError(msg)
+
+        return start
+
+    def _step(self, step):
+        '''
+        Raise exception, if step is not a non-zero integer.
+
+        Return step as type int().
+        '''
+
+        msg = f'not a non-zero integer: "{step}"'
+
+        try:
+            step = int(step)
+        except ValueError:
+            raise AttributeError(msg)
+
+        if step == 0:
+            raise AttributeError(msg)
+
+        return step
+
+    def _series(self, filename, words, start, step):
+        '''
+        Populate series via file content, word tokens, or range of integers.
+
+        Return series as a list() or a range().
+        '''
+
+        if filename:
+            return self._series_from_file(filename)
+
+        if words:
+            return self._series_from_string(words)
+
+        return self._series_from_integers(start, step)
+
+    def _series_from_file(self, filename):
+        '''
+        Populate series using text from a local file.
+
+        Raise exception, if the file is binary or is empty text.
         Return the series list.
         '''
 
-        filename = self.file
         max = self.max
 
-        # Read the file if type text file, or raise error if type binary file
         try:
             with open(filename) as file:
                 series = file.read()
         except UnicodeDecodeError:
-            raise AttributeError(f'** ERROR: "{filename}" must be a text file')
+            msg = f'"{filename}": not a text file'
+            raise AttributeError(msg)
 
-        # Parse the file content, or raise error if file has no content
         try:
             series = series.split()
             series = (series * (int(max / len(series)) + 1))[:max]
         except:
-            raise AttributeError(f'** ERROR: "{filename}" is an empty file')
+            msg = f'"{filename}": empty file found'
+            raise AttributeError(msg)
 
         return series
 
-    def _series_from_string(self):
+    def _series_from_string(self, words):
         '''
         Populate series using a space-delimited string to fill the matrix cells.
 
         Return the series list.
         '''
 
-        words = self.words
         max = self.max
 
         series = words.split()
         series = (series * (int(max / len(series)) + 1))[:max]
+
+        return series
+
+    def _series_from_integers(self, start, step):
+        '''
+        Populate series with integer values to fill the matrix cells.
+
+        Return the series list.
+        '''
+
+        max = self.max
+
+        try:
+            series = range(start, start + max * step, step)[:max]
+        except IndexError:
+            msg = f'start:{start}  step:{step}  max:{max}  end:{start+max*step}'
+            raise AttributeError(msg)
 
         return series
 
@@ -220,7 +296,7 @@ class SpiralMatrix():
         '''
         Turn towards the left- or right-adjacent cell, relative to current.
 
-        Return the compass bearing of the new direction.
+        Return 2-tuple of the new compass bearing.
         '''
 
         return self.vector[turn][bearing]
@@ -229,7 +305,7 @@ class SpiralMatrix():
         '''
         Move forward one cell.
 
-        Return coordinates tuple for the new current cell.
+        Return 2-tuple of coordinates for the new current cell.
         '''
 
         return tuple([sum(coords) for coords in zip(cell, bearing)])
@@ -243,8 +319,8 @@ class SpiralMatrix():
         cell = self.origin
         bearing = self.bearing
         turn = self.turn
-        index = 0
         max = self.max
+        index = 0
 
         # Generate an empty list-of-lists, populate the cells with 'None'.
         self.matrix = []
@@ -300,14 +376,14 @@ def main():
         args.words = stdin.read()
 
     # Build and print the spiral matrix using the parsed command-line args.
-    try:
-        m = SpiralMatrix(dimension=args.DIMENSION, bearing=args.bearing,
+    # try:
+    m = SpiralMatrix(dimension=args.DIMENSION, bearing=args.bearing,
                 turn=args.right, start=args.center, step=args.step,
-                file=args.file, words=args.words).show(axes=args.axes)
-    except AttributeError:
-        print('** AttributeError: %s\n   Attributes List: %s' % (
-                'could not instantiate SpiralMatrix',
-                str(vars(args)).strip('{}')))
+                filename=args.file, words=args.words).show(axes=args.axes)
+    # except AttributeError:
+    #     msg =  f'could not instantiate SpiralMatrix\n'
+    #     msg += f'   attributes: {str(vars(args)).strip("{}")}'
+    #     print(msg)
 
 if __name__ == '__main__':
     main()
