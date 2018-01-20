@@ -160,6 +160,10 @@ class CommandLineInterface():
         except:
             raise argparse.ArgumentTypeError(msg)
 
+        # test: is arg an integer after being coerced to type float?
+        if not float(arg).is_integer():
+            raise argparse.ArgumentTypeError(msg)
+
         # test: is arg evenly divisible by 2?
         if not int(arg) % 2:
             raise argparse.ArgumentTypeError(msg)
@@ -176,6 +180,10 @@ class CommandLineInterface():
         try:
             int(arg)
         except:
+            raise argparse.ArgumentTypeError(msg)
+
+        # test: is arg an integer after being coerced to type float?
+        if not float(arg).is_integer():
             raise argparse.ArgumentTypeError(msg)
 
         # test: is arg equal to 0?
@@ -196,6 +204,10 @@ class CommandLineInterface():
         except:
             raise argparse.ArgumentTypeError(msg)
 
+        # test: is arg an integer after being coerced to type float?
+        if not float(arg).is_integer():
+            raise argparse.ArgumentTypeError(msg)
+
         # test: is arg evenly divisible by 2?
         if not int(arg) % 2:
             raise argparse.ArgumentTypeError(msg)
@@ -212,13 +224,12 @@ class CommandLineInterface():
         '''
         bearing_list = list(self.caller.compass.keys())
         msg = f'"{arg}" should be one of: {bearing_list}'
-        uppercase_arg = str(arg).upper()
 
         # test: is arg a member of bearing_list?
-        if not uppercase_arg in bearing_list:
+        if not str(arg).upper() in bearing_list:
             raise argparse.ArgumentTypeError(msg)
 
-        return uppercase_arg
+        return arg
 
     def arg_is_text_file(self, arg):
         '''
@@ -227,10 +238,10 @@ class CommandLineInterface():
 
         msg = f'{arg} should be a text file'
 
+        # test: is file readable as text?
         try:
             with open(arg) as file:
                 file.read()
-                # return file
         except UnicodeDecodeError:
             raise argparse.ArgumentTypeError(msg)
 
