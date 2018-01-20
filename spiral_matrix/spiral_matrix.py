@@ -375,7 +375,7 @@ def main():
     if args.words == None:
         args.words = stdin.read()
 
-    # Build and print the spiral matrix using the parsed command-line args.
+    # Instantiate and print the spiral matrix.
     m = SpiralMatrix(dimension=args.DIMENSION, bearing=args.bearing,
                 turn=args.right, start=args.center, step=args.step,
                 filename=args.file, words=args.words)
