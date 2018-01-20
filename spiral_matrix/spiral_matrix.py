@@ -376,14 +376,10 @@ def main():
         args.words = stdin.read()
 
     # Build and print the spiral matrix using the parsed command-line args.
-    # try:
     m = SpiralMatrix(dimension=args.DIMENSION, bearing=args.bearing,
                 turn=args.right, start=args.center, step=args.step,
-                filename=args.file, words=args.words).show(axes=args.axes)
-    # except AttributeError:
-    #     msg =  f'could not instantiate SpiralMatrix\n'
-    #     msg += f'   attributes: {str(vars(args)).strip("{}")}'
-    #     print(msg)
+                filename=args.file, words=args.words)
+    m.show(axes=args.axes)
 
 if __name__ == '__main__':
     main()
