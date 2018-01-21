@@ -14,7 +14,7 @@ def read(filename):
 
 setup(
     name = 'spiral-matrix',
-    version = '0.1.3a1',
+    version = '0.1.4',
     packages = find_packages(),
     description = 'Generate a square 2-d matrix with an outward-spiraling '
             'series of elements',
@@ -40,6 +40,6 @@ setup(
         'Programming Language :: Python :: 3',
         'Operating System :: OS Independent',
         'Environment :: Console',
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
     ],
 )
