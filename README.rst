@@ -15,13 +15,12 @@ forms a two-dimensional grid, a matrix, filled with individual cells.
    5x5 spiral matrix
 
 A spiral matrix is a particular type of squared-shaped matrix where
-each cell is populated with one value from a series, or predefined
-list of values. The 'spiral' in 'spiral matrix' refers to the rule
-that all cells are to be populated with values from the series using
-a pattern that conforms to a tightly-wound spiral. This spiral
-progression begins from the center cell, moving outward, populating
-cells with elements from the series. Ultimately, each cell in the
-matrix is populated with one element from the series.
+each cell is populated with one value from a series of elements. The
+'spiral' in 'spiral matrix' refers to the condition that each cell is
+progressively populated with a value from the series following a
+pattern that conforms to a tightly-wound spiral. This spiral
+progression begins from the center cell, moving outward. Ultimately,
+the entire matrix is populated with elements from the series.
 
 .. figure:: https://github.com/zero2cx/spiral-matrix/raw/master/docs/images/spiral_matrix_5+command_line.png
    :alt: 5x5 including command-line

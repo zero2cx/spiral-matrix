@@ -27,13 +27,12 @@ class SpiralMatrix():
     Generate a square 2-d matrix with an outward-spiraling series of elements.
 
     A spiral matrix is a particular type of squared-shaped matrix where
-    each cell is populated with one value from a defined _'series'_, i.e.
-    list of value elements. The _'spiral'_ in 'spiral matrix' refers to
-    the rule that all cells are to be populated with values from the
-    series using a pattern that conforms to a tightly-wound spiral. This
-    spiral progression begins from the center cell, moving outward, while
-    populating cells with elements from the series. Ultimately, each cell
-    in the matrix is populated with one element from the series.
+    each cell is populated with one value from a series of elements. The
+    'spiral' in 'spiral matrix' refers to the condition that each cell is
+    progressively populated with a value from the series following a
+    pattern that conforms to a tightly-wound spiral. This spiral
+    progression begins from the center cell, moving outward. Ultimately,
+    the entire matrix is populated with elements from the series.
 
     Column and row axis-labels along the top- and left-side can be
     prefixed to the printed output. Proceeding outward from the center
