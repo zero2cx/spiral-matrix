@@ -85,7 +85,7 @@ class CommandLineInterfaceTestCase(unittest.TestCase):
 
         pass_configs = [
             f'{cwd}/test-input/3-letter-words.txt',
-            f'{cwd}/test-input/3-letter-words.txt',
+            f'{cwd}/test-input/5-letter-words.txt',
             f'{cwd}/test-input/lorem-ipsum.txt',
             f'{cwd}/test-input/empty.txt',
         ]
