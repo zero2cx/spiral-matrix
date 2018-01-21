@@ -74,7 +74,7 @@ class SpiralMatrix():
     }
 
     def __init__(self, dimension=None, bearing='E', turn=False,
-            start=1, step=1, filename=None, words=None, test=False):
+            start=1, step=1, filename=None, words=None, testing=False):
         '''
         Generate a new instance of SpiralMatrix.
 
@@ -101,10 +101,10 @@ class SpiralMatrix():
         self.turn = 'right' if turn else 'left'
         self.series = self._series(
                 filename, words, self._start(start), self._step(step))
-        self.width = self._width()
+        self.width = self._width(self.series)
 
         # Build the matrix structure that conforms to the attributes.
-        if not test:
+        if not testing:
             self._build()
 
     def _dimension(self, dimension):
@@ -252,14 +252,12 @@ class SpiralMatrix():
 
         return series
 
-    def _width(self):
+    def _width(self, series):
         '''
         Set cell-width for printing, equal to the widest element in the series.
 
         Return the width integer.
         '''
-
-        series = self.series
 
         width = 0
         for i in range(len(series)):
